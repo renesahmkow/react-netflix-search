@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledHeader = styled.header`
+const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,10 +11,10 @@ const StyledHeader = styled.header`
   color: white;
 `
 
-export default function Header() {
+export default function Navbar() {
   return (
-    <StyledHeader>
-      <h1>Neflixsearch</h1>
-    </StyledHeader>
+    <StyledFooter>
+      <nav>Home</nav>
+    </StyledFooter>
   )
 }

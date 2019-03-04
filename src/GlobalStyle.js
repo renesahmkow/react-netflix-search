@@ -14,6 +14,7 @@ export default createGlobalStyle`
     position: fixed;
     width: 100%;
     height: 100%;
+    background: gray;
     overflow: hidden;
   }
 
@@ -25,4 +26,7 @@ export default createGlobalStyle`
   input, textarea, button {
     font-size: 1em;
   }
+
+
+
 `
