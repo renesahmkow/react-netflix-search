@@ -14,7 +14,7 @@ const StyledFooter = styled.footer`
 export default function Navbar() {
   return (
     <StyledFooter>
-      <nav>Home</nav>
+      <nav data-cy="footer-text">Home</nav>
     </StyledFooter>
   )
 }

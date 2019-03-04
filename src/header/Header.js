@@ -14,7 +14,7 @@ const StyledHeader = styled.header`
 export default function Header() {
   return (
     <StyledHeader>
-      <h1>Neflixsearch</h1>
+      <h1 data-cy="header-title">Neflixsearch</h1>
     </StyledHeader>
   )
 }
