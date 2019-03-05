@@ -28,10 +28,14 @@ const CardImage = styled.div`
 `
 
 export default function CardsPage() {
-  const movies = {
-    title: 'Der Herr der Ringe',
-    genre: 'Fantasy',
-  }
+  const movies = [
+    {
+      title: 'Der Herr der Ringe',
+      genre: 'Fantasy',
+    },
+    { title: 'the Transporter', genre: 'Action' },
+    { title: 'Fyre', genre: 'Doku' },
+  ]
 
   console.log(movies)
 
