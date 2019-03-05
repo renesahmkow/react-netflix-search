@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 const PageGrid = styled.div`
@@ -48,13 +48,6 @@ export default function CardsPage() {
         <CardDescription>
           <p>{movies.title}</p>
           <p>{movies.genre}</p>
-        </CardDescription>
-      </StyledCard>
-      <StyledCard>
-        <CardImage>Enter Images here</CardImage>
-        <CardDescription>
-          <p>enter title and gerne here </p>
-          <p> Genre</p>
         </CardDescription>
       </StyledCard>
       <StyledCard>
