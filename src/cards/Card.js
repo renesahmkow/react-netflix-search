@@ -27,18 +27,7 @@ const CardImage = styled.div`
   height: 39vw;
 `
 
-export default function CardsPage() {
-  const movies = [
-    {
-      title: 'Der Herr der Ringe',
-      genre: 'Fantasy',
-    },
-    { title: 'the Transporter', genre: 'Action' },
-    { title: 'Fyre', genre: 'Doku' },
-  ]
-
-  console.log(movies)
-
+export default function Card(movies) {
   return (
     <PageGrid>
       <StyledCard>
@@ -46,29 +35,7 @@ export default function CardsPage() {
           <img src="" alt="" />
         </CardImage>
         <CardDescription>
-          <p>{movies.title}</p>
-          <p>{movies.genre}</p>
-        </CardDescription>
-      </StyledCard>
-      <StyledCard>
-        <CardImage>Enter Images here</CardImage>
-        <CardDescription>
-          <p>enter title and gerne here </p>
-          <p> Genre</p>
-        </CardDescription>
-      </StyledCard>
-      <StyledCard>
-        <CardImage>Enter Images here</CardImage>
-        <CardDescription>
-          <p>enter title and gerne here </p>
-          <p> Genre</p>
-        </CardDescription>
-      </StyledCard>
-      <StyledCard>
-        <CardImage>Enter Images here</CardImage>
-        <CardDescription>
-          <p>enter title and gerne here </p>
-          <p> Genre</p>
+          <p>{movies.findByIndex}</p>
         </CardDescription>
       </StyledCard>
     </PageGrid>
