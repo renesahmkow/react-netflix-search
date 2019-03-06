@@ -10,6 +10,7 @@ const StyledCard = styled.div`
   border: 2px solid #ccc;
   border-radius: 4px;
   overflow: hidden;
+  background-size: cover;
 `
 const CardDescription = styled.div`
   grid-row-start: 2;
@@ -25,19 +26,22 @@ const CardDescription = styled.div`
 
 Card.propTypes = {
   title: PropTypes.string,
-  key: PropTypes.number.isRequired,
   image: PropTypes.string,
+}
+
+Card.defaultProps = {
+  title: 'No title',
 }
 
 export default function Card({ title, src }) {
   return (
     <StyledCard
+      data-cy="card"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/w500${src})`,
-        backgroundSize: 'cover',
       }}
     >
-      <CardDescription>{title}</CardDescription>
+      <CardDescription data-cy="cardtitle">{title}</CardDescription>
     </StyledCard>
   )
 }
