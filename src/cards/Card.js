@@ -1,19 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const PageGrid = styled.div`
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-gap: 5px;
-
-  overflow: scroll;
-`
 const StyledCard = styled.div`
   display: grid;
+  height: 100%;
+  grid-template-rows: auto auto;
   background: #fafafa;
   border: 2px solid #ccc;
   border-radius: 4px;
-  position: relative;
 `
 const CardDescription = styled.div`
   display: flex;
@@ -22,22 +16,15 @@ const CardDescription = styled.div`
   background: black;
   color: white;
 `
-const CardImage = styled.div`
-  width: 26vw;
-  height: 39vw;
-`
+const CardImage = styled.div``
 
-export default function Card(movies) {
+export default function Card({ title, key }) {
   return (
-    <PageGrid>
-      <StyledCard>
-        <CardImage>
-          <img src="" alt="" />
-        </CardImage>
-        <CardDescription>
-          <p>{movies.findByIndex}</p>
-        </CardDescription>
-      </StyledCard>
-    </PageGrid>
+    <StyledCard>
+      <CardImage>
+        <img src="" alt="" />
+      </CardImage>
+      <CardDescription id={key}>{title}</CardDescription>
+    </StyledCard>
   )
 }
