@@ -12,9 +12,16 @@ const StyledInput = styled.input`
 `
 
 export default function Search() {
+  function titleSearch(event) {
+    const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&query=${
+      event.target.value
+    }`
+    console.log(searchString)
+  }
+
   return (
     <StylesForm>
-      <StyledInput type="text" />
+      <StyledInput type="text" onChange={titleSearch} name="target" />
     </StylesForm>
   )
 }
