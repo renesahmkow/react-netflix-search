@@ -1,76 +1,47 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-const PageGrid = styled.div`
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-gap: 5px;
-
-  overflow: scroll;
-`
 const StyledCard = styled.div`
   display: grid;
+  grid-template-rows: 1fr auto;
+  height: 200px;
   background: #fafafa;
   border: 2px solid #ccc;
   border-radius: 4px;
-  position: relative;
+  overflow: hidden;
+  background-size: cover;
 `
 const CardDescription = styled.div`
+  grid-row-start: 2;
   display: flex;
-  padding: 4px 10px;
+  align-items: center;
+  padding: 10px;
   justify-content: space-between;
+  align-items: center;
   background: black;
   color: white;
-`
-const CardImage = styled.div`
-  width: 26vw;
-  height: 39vw;
+  opacity: 0.7;
 `
 
-export default function CardsPage() {
-  const movies = [
-    {
-      title: 'Der Herr der Ringe',
-      genre: 'Fantasy',
-    },
-    { title: 'the Transporter', genre: 'Action' },
-    { title: 'Fyre', genre: 'Doku' },
-  ]
+Card.propTypes = {
+  title: PropTypes.string,
+  image: PropTypes.string,
+}
 
-  console.log(movies)
+Card.defaultProps = {
+  title: 'No title',
+}
 
+export default function Card({ title, src }) {
   return (
-    <PageGrid>
-      <StyledCard>
-        <CardImage>
-          <img src="" alt="" />
-        </CardImage>
-        <CardDescription>
-          <p>{movies.title}</p>
-          <p>{movies.genre}</p>
-        </CardDescription>
-      </StyledCard>
-      <StyledCard>
-        <CardImage>Enter Images here</CardImage>
-        <CardDescription>
-          <p>enter title and gerne here </p>
-          <p> Genre</p>
-        </CardDescription>
-      </StyledCard>
-      <StyledCard>
-        <CardImage>Enter Images here</CardImage>
-        <CardDescription>
-          <p>enter title and gerne here </p>
-          <p> Genre</p>
-        </CardDescription>
-      </StyledCard>
-      <StyledCard>
-        <CardImage>Enter Images here</CardImage>
-        <CardDescription>
-          <p>enter title and gerne here </p>
-          <p> Genre</p>
-        </CardDescription>
-      </StyledCard>
-    </PageGrid>
+    <StyledCard
+      data-cy="card"
+      style={{
+        backgroundImage: `url(https://image.tmdb.org/t/p/w500${src})`,
+      }}
+    >
+      <CardDescription data-cy="cardtitle">{title}</CardDescription>
+    </StyledCard>
   )
 }

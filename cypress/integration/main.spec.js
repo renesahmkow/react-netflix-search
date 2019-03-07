@@ -15,3 +15,13 @@ describe('App', () => {
     cy.get('[data-cy="footer-text"]').should('contain', 'Home')
   })
 })
+
+describe('Card', () => {
+  it('shows an image on the background', () => {
+    cy.get('[data-cy="card"]').should('have.css', 'background-image')
+  })
+
+  it('has a movietitle', () => {
+    cy.get('[data-cy="cardtitle"]').should('have', 'text')
+  })
+})

@@ -3,11 +3,14 @@ name: Card
 menu: Components
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import Card from './Card.js'
 
 # Card
 
+<PropsTable of={Card} />
+
 <Playground>
-  <Card />
+  <Card title="Movie title" src="" style={{ backgroundImage: `url(https://via.placeholder.com/150)` }} />
+
 </Playground>
