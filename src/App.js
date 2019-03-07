@@ -4,7 +4,7 @@ import Card from './cards/Card'
 import Header from './header/Header'
 import Navbar from './navbar/Navbar'
 import Axios from 'axios'
-import Search from './search/Search'
+import Form from './search/Form'
 
 const Grid = styled.section`
   display: grid;
@@ -31,6 +31,21 @@ export default function App() {
     })
   }
 
+  function titleSearch(event) {
+    const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&query=${
+      event.target.value
+    }`
+
+    if (event.target.value === '') {
+      getMovies()
+    } else {
+      Axios.get(searchString).then(res => {
+        const { results } = res.data
+        setMovies(results)
+      })
+    }
+  }
+
   useEffect(() => {
     getMovies()
   }, [])
@@ -38,7 +53,7 @@ export default function App() {
   return (
     <Grid>
       <Header />
-      <Search />
+      <Form titleSearch={titleSearch} />
       <PageGrid>
         {movies.map(movie => (
           <Card
