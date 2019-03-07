@@ -22,7 +22,7 @@ export default function App() {
 
   function getMovies() {
     const urlString =
-      'https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=en-US&query=the&page=1&include_adult=false'
+      'https://api.themoviedb.org/3/trending/movie/week?api_key=6dd2696164ca6e927402920dedc2e294'
 
     Axios.get(urlString).then(res => {
       const { results } = res.data
