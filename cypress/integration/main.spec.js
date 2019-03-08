@@ -7,10 +7,6 @@ describe('App', () => {
     cy.title().should('equal', 'Netflix Search')
   })
 
-  it('has the correct header text', () => {
-    cy.get('[data-cy="header-title"]').should('contain', 'Neflixsearch')
-  })
-
   it('has the correct footer text', () => {
     cy.get('[data-cy="footer-text"]').should('contain', 'Home')
   })
@@ -23,5 +19,24 @@ describe('Card', () => {
 
   it('has a movietitle', () => {
     cy.get('[data-cy="cardtitle"]').should('have', 'text')
+  })
+})
+
+describe('Header', () => {
+  it('has the correct header text', () => {
+    cy.get('[data-cy="header-title"]')
+      .should('contain', 'Neflixsearch')
+      .click()
+  })
+
+  it('has the right form', () => {
+    cy.get('[data-cy="area"] > form').should('have.length', 1)
+    cy.get('[data-cy="area"] > form > input').should('have.length', 1)
+  })
+
+  describe('TitleSearch', () => {
+    it('can filter the movies', () => {
+      cy.get('[data-cy="area"] > form > input').type('Hello, World')
+    })
   })
 })
