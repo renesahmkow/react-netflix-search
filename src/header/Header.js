@@ -10,7 +10,7 @@ const StyledHeader = styled.header`
   height: 50px;
   width: 100%;
   color: white;
-  margin: 5px;
+  margin-bottom: 5px;
 `
 
 export default function Header(titleSearch) {

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const SearchContent = styled.div`
+const SearchArea = styled.div`
   display: flex;
   width: 100%;
 `
 
 const StylesForm = styled.form`
   margin: 0 auto;
-  height: 0;
+  height: 100%;
   overflow: hidden;
 `
 
@@ -20,8 +20,8 @@ const StyledInput = styled.input`
 
 export default function Form({ titleSearch, headerActive, value }) {
   return (
-    <SearchContent>
-      <StylesForm style={headerActive ? { height: '100%' } : null}>
+    <SearchArea data-cy="area">
+      <StylesForm data-cy="form" style={headerActive ? { height: 0 } : null}>
         <StyledInput
           type="text"
           onChange={titleSearch.titleSearch}
@@ -29,6 +29,6 @@ export default function Form({ titleSearch, headerActive, value }) {
           value={value}
         />
       </StylesForm>
-    </SearchContent>
+    </SearchArea>
   )
 }
