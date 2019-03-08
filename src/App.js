@@ -4,11 +4,10 @@ import Card from './cards/Card'
 import Header from './header/Header'
 import Navbar from './navbar/Navbar'
 import Axios from 'axios'
-import Form from './search/Form'
 
 const Grid = styled.section`
   display: grid;
-  grid-template-rows: 48px auto 1fr 48px;
+  grid-template-rows: auto 1fr 48px;
   grid-gap: 10px;
   height: 100vh;
 `
@@ -52,8 +51,7 @@ export default function App() {
 
   return (
     <Grid>
-      <Header />
-      <Form titleSearch={titleSearch} />
+      <Header titleSearch={titleSearch} />
       <PageGrid>
         {movies.map(movie => (
           <Card

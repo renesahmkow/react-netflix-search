@@ -1,24 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import Form from '../search/Form'
 
 const StyledHeader = styled.header`
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   background: black;
   height: 50px;
   width: 100%;
   color: white;
-`
-const SearchDiv = styled.div`
-  background-image: ;
+  margin: 5px;
 `
 
-export default function Header() {
+export default function Header(titleSearch) {
+  const [headerActive, setHeaderActive] = useState(true)
+
+  function handleClick() {
+    setHeaderActive(!headerActive)
+  }
   return (
-    <StyledHeader>
-      <h1 data-cy="header-title">Neflixsearch</h1>
-      <div />
-    </StyledHeader>
+    <section>
+      <StyledHeader onClick={handleClick}>
+        <h1 data-cy="header-title">Neflixsearch</h1>
+      </StyledHeader>
+      <Form headerActive={headerActive} titleSearch={titleSearch} />
+    </section>
   )
 }
