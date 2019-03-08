@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import Form from '../search/Form'
+import PropTypes from 'prop-types'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -12,6 +13,12 @@ const StyledHeader = styled.header`
   color: white;
   margin-bottom: 5px;
 `
+
+Header.propTypes = {
+  onClick: PropTypes.func,
+  headerActive: PropTypes.func,
+  titleSearch: PropTypes.func,
+}
 
 export default function Header(titleSearch) {
   const [headerActive, setHeaderActive] = useState(true)

@@ -3,10 +3,16 @@ name: Header
 menu: Components
 ---
 
-import { Playground } from 'docz'
+import { Playground, PropsTable } from 'docz'
 import Header from './Header.js'
 
 # Header
+
+<PropsTable of={Header} />
+
+<Playground>
+  <Header onclick="onClick" />
+</Playground>
 
 <Playground>
   <Header />
