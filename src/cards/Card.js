@@ -3,29 +3,25 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import GlobalStyle from '../GlobalStyle'
 
-const StyledCard = styled.div`
-  position: relative;
-`
+const StyledCard = styled.div``
 
-const CardImage = styled.div``
+const CardContent = styled.div``
+
+const CardCover = styled.div``
 
 const CardTitle = styled.div`
-  grid-row-start: 2;
+  position: absolute;
+  bottom: 0;
   display: flex;
-  align-items: center;
-  padding: 10px;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   background: black;
-  color: white;
+  padding: 10px;
   opacity: 0.7;
 `
 
 const CardRating = styled.div``
 
-const CardContent = styled.div`
-  color: white;
-`
+const CardDescribtion = styled.div``
 
 Card.propTypes = {
   title: PropTypes.string,
@@ -36,7 +32,7 @@ Card.defaultProps = {
   title: 'No title',
 }
 
-export default function Card({ title, src }) {
+export default function Card({ title, src, overview, rating }) {
   const [openCard, setOpenCard] = useState(true)
 
   function handleClickCard() {
@@ -48,26 +44,24 @@ export default function Card({ title, src }) {
       className={openCard ? 'close' : 'open'}
       onClick={handleClickCard}
       data-cy="card"
-      style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/w500${src})`,
-      }}
     >
-      <CardImage
-        className={
-          openCard ? 'close card--image-close ' : 'open card--image-open'
-        }
-      />
+      <CardContent className="content" className={openCard ? 'close' : 'open'}>
+        <CardCover
+          className={openCard ? 'cover' : 'cover__open'}
+          style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/w500${src})`,
+          }}
+        >
+          <CardTitle className="title" data-cy="cardtitle">
+            {title}
+          </CardTitle>
+        </CardCover>
 
-      <CardTitle data-cy="cardtitle">{title}</CardTitle>
+        <CardRating>{rating}</CardRating>
 
-      <CardRating> 5/10 </CardRating>
-
-      <CardContent
-        className={openCard ? 'close card--content-close ' : 'open'}
-        style={'className' === 'close' ? { display: 'none' } : null}
-      >
-        Lorem{' '}
+        <CardDescribtion>{overview}</CardDescribtion>
       </CardContent>
+
       <GlobalStyle />
     </StyledCard>
   )

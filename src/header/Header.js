@@ -21,11 +21,11 @@ Header.propTypes = {
 }
 
 export default function Header(titleSearch) {
-    const [headerActive, setHeaderActive] = useState(true)
+  const [headerActive, setHeaderActive] = useState(true)
 
-    function handleClick() {
-      setHeaderActive(!headerActive)
-    }
+  function handleClick() {
+    setHeaderActive(!headerActive)
+  }
 
   return (
     <section>

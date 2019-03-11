@@ -30,45 +30,64 @@ export default createGlobalStyle`
     overflow: hidden;
   }
 
-  .close {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  height: 200px;
-  border: 2px solid;
-  border-radius: 4px;
-  overflow: hidden;
-  background-size: cover;
-  margin-bottom: 5px;
-  background-size: cover;
 
+  .close {
+    position: relative;
+    height: 200px;
+    border: 2px solid;
+    border-radius: 4px;
+    background-size: cover;
+    margin-bottom: 5px;
+    transition: all 0.8s ease;
+    overflow: hidden;
+  }
+
+  
+  .content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transition: all 0.8s ease;
+  }
+
+  .cover {
+    position: relative;
+    background-size: cover;
+    height: 200px;
+    background-repeat: no-repeat;
+    padding: 15px;
+    color: #fff;
+    transition: all 0.8s ease;
+  }
+
+  .cover__open {
+    
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #fff;
+    height: 300px;
+    background-size: cover;
+    transition: all 0.8s ease;
   }
 
   .open {
     position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0 ;
     display: grid;
-    grid-template-rows: 1fr auto 50px 1fr;
+    grid-template-rows: 300px 40px 1fr;
+    padding: 10px;
+    overflow: scroll;
+    grid-gap: 5px;
     height: 100vh;
-    border-radius: 4px;
-    overflow: hidden;
-    background-color: blue;
+    width: 100%;
+    background: white;
     margin-bottom: 5px;
-    text-align: center;
-    transition: all .4s ease-in-out,
+    transition: all .7s ease;
+    z-index: 100;
   }
-
-  .card--content-close {
-    display: none;
-    background: black;
-  }
-
-  .card--image-close {
-    display: none;
-    background: black;
-  }
-
-  .card--image-open {
-    height: 250px;
-    background: yellow;
-  }
-
 `
