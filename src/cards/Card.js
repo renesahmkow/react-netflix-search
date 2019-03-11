@@ -1,18 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import GlobalStyle from '../GlobalStyle'
 
 const StyledCard = styled.div`
-  display: grid;
-  grid-template-rows: 1fr auto;
-  height: 200px;
-  background: #fafafa;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  overflow: hidden;
-  background-size: cover;
+  position: relative;
 `
-const CardDescription = styled.div`
+
+const CardImage = styled.div``
+
+const CardTitle = styled.div`
   grid-row-start: 2;
   display: flex;
   align-items: center;
@@ -22,6 +19,12 @@ const CardDescription = styled.div`
   background: black;
   color: white;
   opacity: 0.7;
+`
+
+const CardRating = styled.div``
+
+const CardContent = styled.div`
+  color: white;
 `
 
 Card.propTypes = {
@@ -34,14 +37,38 @@ Card.defaultProps = {
 }
 
 export default function Card({ title, src }) {
+  const [openCard, setOpenCard] = useState(true)
+
+  function handleClickCard() {
+    setOpenCard(!openCard)
+  }
+
   return (
     <StyledCard
+      className={openCard ? 'close' : 'open'}
+      onClick={handleClickCard}
       data-cy="card"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/w500${src})`,
       }}
     >
-      <CardDescription data-cy="cardtitle">{title}</CardDescription>
+      <CardImage
+        className={
+          openCard ? 'close card--image-close ' : 'open card--image-open'
+        }
+      />
+
+      <CardTitle data-cy="cardtitle">{title}</CardTitle>
+
+      <CardRating> 5/10 </CardRating>
+
+      <CardContent
+        className={openCard ? 'close card--content-close ' : 'open'}
+        style={'className' === 'close' ? { display: 'none' } : null}
+      >
+        Lorem{' '}
+      </CardContent>
+      <GlobalStyle />
     </StyledCard>
   )
 }

@@ -14,7 +14,6 @@ export default createGlobalStyle`
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: gray;
     overflow: hidden;
   }
 
@@ -29,6 +28,47 @@ export default createGlobalStyle`
 
   header {
     overflow: hidden;
+  }
+
+  .close {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  height: 200px;
+  border: 2px solid;
+  border-radius: 4px;
+  overflow: hidden;
+  background-size: cover;
+  margin-bottom: 5px;
+  background-size: cover;
+
+  }
+
+  .open {
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr auto 50px 1fr;
+    height: 100vh;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: blue;
+    margin-bottom: 5px;
+    text-align: center;
+    transition: all .4s ease-in-out,
+  }
+
+  .card--content-close {
+    display: none;
+    background: black;
+  }
+
+  .card--image-close {
+    display: none;
+    background: black;
+  }
+
+  .card--image-open {
+    height: 250px;
+    background: yellow;
   }
 
 `
