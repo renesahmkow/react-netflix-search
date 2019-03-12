@@ -27,6 +27,7 @@ export default function App() {
     Axios.get(urlString).then(res => {
       const { results } = res.data
       setMovies(results)
+      console.log(results)
     })
   }
 

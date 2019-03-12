@@ -1,21 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import MovieFilter from './MovieFilter'
 
 const SearchArea = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
   position: relative;
-  animation: search 3s ease-out;
-
-  @keyframes search {
-    0% {
-      transform: translatey(0%);
-    }
-    100% {
-      transform: translatey(100%);
-    }
-  }
 `
 
 const StylesForm = styled.form`
@@ -40,6 +31,7 @@ export default function Form({ titleSearch, headerActive, value }) {
           name="target"
           value={value}
         />
+        <MovieFilter />
       </StylesForm>
     </SearchArea>
   )
