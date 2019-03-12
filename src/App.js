@@ -20,9 +20,7 @@ const PageGrid = styled.div`
 export default function App() {
   const [movies, setMovies] = useState([])
 
-  console.log(movies)
-
-  function getMovies() {
+  function getTrendingMovies() {
     const urlString =
       'https://api.themoviedb.org/3/trending/movie/week?api_key=6dd2696164ca6e927402920dedc2e294'
 
@@ -38,7 +36,7 @@ export default function App() {
     }`
 
     if (event.target.value === '') {
-      getMovies()
+      getTrendingMovies()
     } else {
       Axios.get(searchString).then(res => {
         const { results } = res.data
@@ -48,7 +46,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    getMovies()
+    getTrendingMovies()
   }, [])
 
   return (

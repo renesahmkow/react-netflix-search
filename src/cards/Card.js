@@ -11,6 +11,12 @@ const StyledCard = styled.div`
 
 const CardContent = styled.div`
   grid-gap: 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transition: all 0.8s ease;
 `
 
 const CardCover = styled.div``
@@ -24,17 +30,20 @@ const CardTitle = styled.div`
   background: black;
   padding: 10px;
   opacity: 0.7;
+  transition: all 0.8s ease;
 `
 
 const CardRating = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all 0.8s ease;
 `
 
 const CardIconsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
+  transition: all 0.8s ease;
 `
 
 const CardIcons = styled.div`
@@ -45,10 +54,12 @@ const CardIcons = styled.div`
   height: 50px;
   border: 4px solid white;
   border-radius: 50%;
+  transition: all 0.8s ease;
 `
 
 const CardDescribtion = styled.div`
   padding: 15px;
+  transition: all 0.8s ease;
 `
 
 Card.propTypes = {
@@ -60,12 +71,19 @@ Card.defaultProps = {
   title: 'No title',
 }
 
-export default function Card({ title, src, overview, rating }) {
+export default function Card({ title, src, overview, rating, genres }) {
   const [openCard, setOpenCard] = useState(true)
 
   function handleClickCard() {
     setOpenCard(!openCard)
   }
+
+  function handleClickIcon(event) {
+    event.stopPropagation()
+    console.log('clicked icon')
+  }
+
+  console.log(genres)
 
   return (
     <StyledCard
@@ -73,7 +91,7 @@ export default function Card({ title, src, overview, rating }) {
       onClick={handleClickCard}
       data-cy="card"
     >
-      <CardContent className="content" className={openCard ? 'close' : 'open'}>
+      <CardContent className={openCard ? 'close' : 'open '}>
         <CardCover
           className={openCard ? 'cover' : 'cover__open'}
           style={{
@@ -91,7 +109,7 @@ export default function Card({ title, src, overview, rating }) {
         </CardRating>
 
         <CardIconsContainer>
-          <CardIcons>
+          <CardIcons onClick={handleClickIcon}>
             <FaRegHeart style={{ width: 25, height: 25 }} />
           </CardIcons>
           <CardIcons>

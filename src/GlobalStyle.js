@@ -39,16 +39,7 @@ export default createGlobalStyle`
     margin-bottom: 5px;
     transition: all 0.8s ease;
     overflow: hidden;
-  }
-
-  
-  .content {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    transition: all 0.8s ease;
+    transition: all 0.8s ease-in-out;    
   }
 
   .cover {
@@ -57,7 +48,7 @@ export default createGlobalStyle`
     height: 200px;
     padding: 15px;
     color: #fff;
-    transition: all 0.8s ease;
+    transition: all 0.8s ease-in-out;
   }
 
   .cover__open {
@@ -65,7 +56,7 @@ export default createGlobalStyle`
     background-size: cover;
     height: 300px;
     background-size: cover;
-    transition: all 0.8s ease;
+    transition: all 0.8s ease-in-out;
   }
 
   .open {
@@ -76,12 +67,13 @@ export default createGlobalStyle`
     bottom: 0 ;
     display: grid;
     grid-template-rows: 300px 40px auto 1fr;
-    overflow: hidden;
+    overflow: scroll;
     margin-bottom: 100px;
     height: 100%;
     width: 100%;
     background: #607D8B;
-    transition: all 0.8s ease;
+    transition: all 0.8s ease-in-out;
+
     z-index: 100;
   }
 
