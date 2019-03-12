@@ -12,6 +12,7 @@ const StyledHeader = styled.header`
   width: 100%;
   color: white;
   margin-bottom: 5px;
+  transition: all 0.9s ease-in-out;
 `
 
 Header.propTypes = {

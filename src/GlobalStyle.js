@@ -34,7 +34,6 @@ export default createGlobalStyle`
   .close {
     position: relative;
     height: 200px;
-    border: 2px solid;
     border-radius: 4px;
     background-size: cover;
     margin-bottom: 5px;
@@ -56,7 +55,6 @@ export default createGlobalStyle`
     position: relative;
     background-size: cover;
     height: 200px;
-    background-repeat: no-repeat;
     padding: 15px;
     color: #fff;
     transition: all 0.8s ease;
@@ -65,8 +63,6 @@ export default createGlobalStyle`
   .cover__open {
     
     background-size: cover;
-    background-repeat: no-repeat;
-    color: #fff;
     height: 300px;
     background-size: cover;
     transition: all 0.8s ease;
@@ -79,15 +75,29 @@ export default createGlobalStyle`
     left: 0;
     bottom: 0 ;
     display: grid;
-    grid-template-rows: 300px 40px 1fr;
-    padding: 10px;
-    overflow: scroll;
-    grid-gap: 5px;
-    height: 100vh;
+    grid-template-rows: 300px 40px auto 1fr;
+    overflow: hidden;
+    margin-bottom: 100px;
+    height: 100%;
     width: 100%;
-    background: white;
-    margin-bottom: 5px;
-    transition: all .7s ease;
+    background: #607D8B;
+    transition: all 0.8s ease;
     z-index: 100;
   }
+
+  .rating__line {
+    height: 5px;
+    background: lightgreen;
+    border-radius: 5px;
+  }
+
+  .rating {
+    margin-right: 10px;
+  }
+
+  .react-icons {
+    background-color: blue;
+  }
+
+
 `
