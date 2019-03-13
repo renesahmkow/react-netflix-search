@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import GlobalStyle from '../GlobalStyle'
 import { FaTv, FaRegHeart, FaRegTimesCircle } from 'react-icons/fa'
-import MovieFilter from '../search/MovieFilter'
 
 const StyledCard = styled.div`
   color: white;
@@ -72,7 +71,7 @@ Card.defaultProps = {
   title: 'No title',
 }
 
-export default function Card({ title, src, overview, rating, genres }) {
+export default function Card({ title, src, overview, rating }) {
   const [openCard, setOpenCard] = useState(true)
 
   function handleClickCard() {
@@ -123,7 +122,6 @@ export default function Card({ title, src, overview, rating, genres }) {
       </CardContent>
 
       <GlobalStyle />
-      <MovieFilter />
     </StyledCard>
   )
 }

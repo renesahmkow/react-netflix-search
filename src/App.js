@@ -27,7 +27,6 @@ export default function App() {
     Axios.get(urlString).then(res => {
       const { results } = res.data
       setMovies(results)
-      console.log(results)
     })
   }
 
@@ -46,13 +45,39 @@ export default function App() {
     }
   }
 
+  function genreSearch(event) {
+    const genreString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&sort_by=popularity.desc&include_adult=false&include_video=false&page=1${
+      event.target.value
+    }
+      `
+    Axios.get(genreString).then(res => {
+      const { results } = res.data
+      setMovies(results)
+    })
+  }
+
+  function ratingSearch(event) {
+    const ratingString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte=${
+      event.target.value
+    }`
+
+    Axios.get(ratingString).then(res => {
+      const { results } = res.data
+      setMovies(results)
+    })
+  }
+
   useEffect(() => {
     getTrendingMovies()
   }, [])
 
   return (
     <Grid>
-      <Header titleSearch={titleSearch} />
+      <Header
+        titleSearch={titleSearch}
+        genreSearch={genreSearch}
+        ratingSearch={ratingSearch}
+      />
       <PageGrid>
         {movies.map(movie => (
           <Card

@@ -4,6 +4,8 @@ import MovieFilter from './MovieFilter'
 
 const SearchArea = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   position: relative;
@@ -11,27 +13,40 @@ const SearchArea = styled.div`
 
 const StylesForm = styled.form`
   position: relative;
-  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 `
 
 const StyledInput = styled.input`
   border: 2px solid black;
-  margin: 0 auto;
   padding: 5px;
+  margin: 10px;
 `
 
-export default function Form({ titleSearch, headerActive, value }) {
+export default function Form({
+  titleSearch,
+  headerActive,
+  value,
+  ratingSearch,
+  genreSearch,
+}) {
   return (
-    <SearchArea data-cy="area" style={headerActive ? { height: 0 } : null}>
+    <SearchArea
+      data-cy="area"
+      style={headerActive ? { height: 0, display: 'none' } : null}
+    >
       <StylesForm data-cy="form">
         <StyledInput
           type="text"
-          onChange={titleSearch.titleSearch}
+          onChange={titleSearch}
           name="target"
           value={value}
         />
-        <MovieFilter />
+        <MovieFilter genreSearch={genreSearch} ratingSearch={ratingSearch} />
       </StylesForm>
     </SearchArea>
   )

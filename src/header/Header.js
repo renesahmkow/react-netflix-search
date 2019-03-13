@@ -21,7 +21,7 @@ Header.propTypes = {
   titleSearch: PropTypes.func,
 }
 
-export default function Header(titleSearch) {
+export default function Header({ titleSearch, genreSearch, ratingSearch }) {
   const [headerActive, setHeaderActive] = useState(true)
 
   function handleClick() {
@@ -33,7 +33,12 @@ export default function Header(titleSearch) {
       <StyledHeader onClick={handleClick}>
         <h1 data-cy="header-title">Neflixsearch</h1>
       </StyledHeader>
-      <Form headerActive={headerActive} titleSearch={titleSearch} />
+      <Form
+        headerActive={headerActive}
+        titleSearch={titleSearch}
+        ratingSearch={ratingSearch}
+        genreSearch={genreSearch}
+      />
     </section>
   )
 }
