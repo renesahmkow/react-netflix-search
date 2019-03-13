@@ -8,7 +8,7 @@ const StyledSelect = styled.select`
   width: 90%;
   height: 30px;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin: 0 auto 10px auto;
 `
 
 export default function MovieFilter({ genreSearch, ratingSearch }) {

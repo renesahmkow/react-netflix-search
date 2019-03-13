@@ -16,15 +16,16 @@ const StylesForm = styled.form`
   display: flex;
   width: 100%;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow: hidden;
+  padding: 10px;
 `
 
 const StyledInput = styled.input`
   border: 2px solid black;
   padding: 5px;
-  margin: 10px;
+  margin: 10px auto;
 `
 
 export default function Form({

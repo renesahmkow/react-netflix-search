@@ -22,6 +22,11 @@ export default createGlobalStyle`
     margin: 0;
   }
 
+  label {
+    margin-left: 20px;
+    font-weight: bold;
+  }
+
   input, textarea, button {
     font-size: 1em;
   }
