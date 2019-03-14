@@ -30,8 +30,6 @@ export default function App() {
     })
   }
 
-  console.log(movies)
-
   function titleSearch(event) {
     const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&query=${
       event.target.value
@@ -47,23 +45,13 @@ export default function App() {
     }
   }
 
-  function genreSearch(event) {
-    const genreString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&sort_by=popularity.desc&include_adult=false&include_video=false&page=1${
-      event.target.value
-    }
-      `
-    Axios.get(genreString).then(res => {
-      const { results } = res.data
-      setMovies(results)
-    })
-  }
+  async function filterMovies(data) {
+    const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&${
+      data.rating
+    }&${data.genre}`
+    console.log(data)
 
-  function ratingSearch(event) {
-    const ratingString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&vote_average.gte=${
-      event.target.value
-    }`
-
-    Axios.get(ratingString).then(res => {
+    await Axios.get(filterString).then(res => {
       const { results } = res.data
       setMovies(results)
     })
@@ -75,11 +63,7 @@ export default function App() {
 
   return (
     <Grid>
-      <Header
-        titleSearch={titleSearch}
-        genreSearch={genreSearch}
-        ratingSearch={ratingSearch}
-      />
+      <Header titleSearch={titleSearch} filterMovies={filterMovies} />
       <PageGrid>
         {movies.map(movie => (
           <Card

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Form from '../search/Form'
 import PropTypes from 'prop-types'
@@ -22,11 +22,24 @@ Header.propTypes = {
   titleSearch: PropTypes.func,
 }
 
-export default function Header({ titleSearch, genreSearch, ratingSearch }) {
+export default function Header({ titleSearch, filterMovies }) {
   const [headerActive, setHeaderActive] = useState(true)
+  const [data, setData] = useState({})
 
   function handleClick() {
     setHeaderActive(!headerActive)
+  }
+
+  function onInputChange(event) {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value,
+    })
+    getFilterData(data)
+  }
+
+  function getFilterData(data) {
+    filterMovies({ ...data })
   }
 
   return (
@@ -40,8 +53,7 @@ export default function Header({ titleSearch, genreSearch, ratingSearch }) {
       <Form
         headerActive={headerActive}
         titleSearch={titleSearch}
-        ratingSearch={ratingSearch}
-        genreSearch={genreSearch}
+        onInputChange={onInputChange}
       />
     </section>
   )

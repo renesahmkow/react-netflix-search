@@ -79,7 +79,19 @@ export default createGlobalStyle`
 
   .title__open {
     position: absolute;
-    bottom: 60%;
+    font-weight: bold;
+    font-size: 20px;
+    bottom: 47%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    transition: all 1s ;
+  }
+
+  .title__close {
+    position: absolute;
+    bottom: 0;
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
@@ -87,7 +99,6 @@ export default createGlobalStyle`
     padding: 10px;
     opacity: 0.7;
   }
-
 
   .rating__line {
     height: 5px;

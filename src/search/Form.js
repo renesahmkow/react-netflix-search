@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import MovieFilter from './MovieFilter'
 
@@ -37,8 +37,7 @@ export default function Form({
   titleSearch,
   headerActive,
   value,
-  ratingSearch,
-  genreSearch,
+  onInputChange,
 }) {
   return (
     <SearchArea
@@ -52,7 +51,7 @@ export default function Form({
           name="target"
           value={value}
         />
-        <MovieFilter genreSearch={genreSearch} ratingSearch={ratingSearch} />
+        <MovieFilter onInputChange={onInputChange} />
       </StylesForm>
     </SearchArea>
   )
