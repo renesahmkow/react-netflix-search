@@ -1,96 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import Card from './cards/Card'
-import Header from './header/Header'
-import Navbar from './navbar/Navbar'
-import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom'
-import Axios from 'axios'
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import MoviePage from './cards/MoviePage'
 
 const Grid = styled.section`
   display: grid;
-  grid-template-rows: auto 1fr 48px;
+  grid-template-rows: auto 48px;
   grid-gap: 10px;
   height: 100vh;
 `
-const PageGrid = styled.div`
+
+const StyledNavbar = styled.nav`
   display: grid;
-  grid-auto-rows: auto;
-  overflow: scroll;
+  grid-auto-flow: column;
+  grid-gap: 2px;
+  height: 50px;
+  width: 100%;
+  background: black;
+  color: white;
+`
+
+const StyledLink = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-decoration: none;
 `
 
 export default function App() {
-  const [movies, setMovies] = useState([])
-
-  function getTrendingMovies() {
-    const urlString =
-      'https://api.themoviedb.org/3/trending/movie/week?api_key=6dd2696164ca6e927402920dedc2e294'
-
-    Axios.get(urlString).then(res => {
-      const { results } = res.data
-      setMovies(results)
-    })
-  }
-
-  function titleSearch(event) {
-    const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&query=${
-      event.target.value
-    }`
-
-    if (event.target.value === '') {
-      getTrendingMovies()
-    } else {
-      Axios.get(searchString).then(res => {
-        const { results } = res.data
-        setMovies(results)
-      })
-    }
-  }
-
-  useEffect(() => {
-    getTrendingMovies()
-  }, [])
-
   return (
     <Router>
-      <Route exact path="/">
-        <Grid>
-          <Header titleSearch={titleSearch} />
-          <PageGrid>
-            {movies.map(movie => (
-              <Card
-                {...movie}
-                rating={movie.vote_average}
-                overview={movie.overview}
-                title={movie.title}
-                src={movie.poster_path}
-                key={movie.id}
-              />
-            ))}
-          </PageGrid>
-          <Navbar />
-        </Grid>
-      </Route>
-
-      <Route path="/favorites">
-        <Grid>
-          <Header titleSearch={titleSearch} />
-          <PageGrid>
-            {movies
-              .map(movie => (
-                <Card
-                  {...movie}
-                  rating={movie.vote_average}
-                  overview={movie.overview}
-                  title={movie.title}
-                  src={movie.poster_path}
-                  key={movie.id}
-                />
-              ))
-              .filter(movie => movie.bookmarked)}
-          </PageGrid>
-          <Navbar />
-        </Grid>
-      </Route>
+      <Grid>
+        <Route exact path="/" render={() => <MoviePage />} />
+        <Route exact path="/favorites" render={() => <MoviePage />} />
+        <StyledNavbar>
+          <StyledLink exact to="/">
+            Home
+          </StyledLink>
+          <StyledLink to="/favorites">Favorites</StyledLink>
+        </StyledNavbar>
+      </Grid>
     </Router>
   )
 }

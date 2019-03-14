@@ -9,41 +9,22 @@ const StyledCard = styled.div`
   background: darkgray;
 `
 
-const CardContent = styled.div`
-  grid-gap: 15px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  transition: all 0.8s ease;
-`
+const CardContent = styled.div``
 
 const CardCover = styled.div``
 
-const CardTitle = styled.div`
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-  background: black;
-  padding: 10px;
-  opacity: 0.7;
-  transition: all 0.8s ease;
-`
+const CardTitle = styled.div``
 
 const CardRating = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.8s ease;
+  margin-top: 50px;
 `
 
 const CardIconsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
-  transition: all 0.8s ease;
 `
 
 const CardIcons = styled.div`
@@ -54,12 +35,11 @@ const CardIcons = styled.div`
   height: 50px;
   border: 4px solid white;
   border-radius: 50%;
-  transition: all 0.8s ease;
 `
 
 const CardDescribtion = styled.div`
   padding: 15px;
-  transition: all 0.8s ease;
+  line-height: 1.5;
 `
 
 Card.propTypes = {
@@ -71,7 +51,7 @@ Card.defaultProps = {
   title: 'No title',
 }
 
-export default function Card({ title, src, overview, rating, genres }) {
+export default function Card({ title, src, overview, rating }) {
   const [openCard, setOpenCard] = useState(true)
 
   function handleClickCard() {
@@ -82,8 +62,6 @@ export default function Card({ title, src, overview, rating, genres }) {
     event.stopPropagation()
     console.log('clicked icon')
   }
-
-  console.log(genres)
 
   return (
     <StyledCard
@@ -98,7 +76,10 @@ export default function Card({ title, src, overview, rating, genres }) {
             backgroundImage: `url(https://image.tmdb.org/t/p/w500${src})`,
           }}
         >
-          <CardTitle className="title" data-cy="cardtitle">
+          <CardTitle
+            className={openCard ? 'title__close' : 'title__open'}
+            data-cy="cardtitle"
+          >
             {title}
           </CardTitle>
         </CardCover>
