@@ -45,13 +45,25 @@ export default function App() {
     }
   }
 
+  async function filterMovies(data) {
+    const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&${
+      data.rating
+    }&${data.genre}`
+    console.log(data)
+
+    await Axios.get(filterString).then(res => {
+      const { results } = res.data
+      setMovies(results)
+    })
+  }
+
   useEffect(() => {
     getTrendingMovies()
   }, [])
 
   return (
     <Grid>
-      <Header titleSearch={titleSearch} />
+      <Header titleSearch={titleSearch} filterMovies={filterMovies} />
       <PageGrid>
         {movies.map(movie => (
           <Card

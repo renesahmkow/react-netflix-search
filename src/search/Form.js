@@ -1,45 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import MovieFilter from './MovieFilter'
 
 const SearchArea = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   position: relative;
-  animation: search 3s ease-out;
 
-  @keyframes search {
-    0% {
-      transform: translatey(0%);
-    }
-    100% {
-      transform: translatey(100%);
-    }
+  .before {
+    transition: all 0.9s ease-in;
   }
 `
 
 const StylesForm = styled.form`
   position: relative;
-  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   overflow: hidden;
+  padding: 10px;
 `
 
 const StyledInput = styled.input`
+  position: relative;
   border: 2px solid black;
-  margin: 0 auto;
   padding: 5px;
+  margin: 10px auto;
 `
 
-export default function Form({ titleSearch, headerActive, value }) {
+export default function Form({
+  titleSearch,
+  headerActive,
+  value,
+  onInputChange,
+}) {
   return (
-    <SearchArea data-cy="area" style={headerActive ? { height: 0 } : null}>
+    <SearchArea
+      data-cy="area"
+      style={headerActive ? { height: 0, display: 'none' } : null}
+    >
       <StylesForm data-cy="form">
         <StyledInput
           type="text"
-          onChange={titleSearch.titleSearch}
+          onChange={titleSearch}
           name="target"
           value={value}
         />
+        <MovieFilter onInputChange={onInputChange} />
       </StylesForm>
     </SearchArea>
   )
