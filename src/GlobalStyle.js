@@ -42,9 +42,8 @@ export default createGlobalStyle`
     border-radius: 4px;
     background-size: cover;
     margin-bottom: 5px;
-    transition: all 0.8s ease;
     overflow: hidden;
-    transition: all 0.8s ease-in-out;    
+    transition: all 0.8s ease;
   }
 
   .cover {
@@ -53,34 +52,42 @@ export default createGlobalStyle`
     height: 200px;
     padding: 15px;
     color: #fff;
-    transition: all 0.8s ease-in-out;
+    transition: all 0.8s ease;
   }
 
   .cover__open {
-    
     background-size: cover;
     height: 300px;
-    background-size: cover;
-    transition: all 0.8s ease-in-out;
   }
 
   .open {
+    display: grid;
+    grid-template-rows: 300px auto auto 1fr;
+    grid-gap: 5px;
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0 ;
-    display: grid;
-    grid-template-rows: 300px 40px auto 1fr;
     overflow: scroll;
-    margin-bottom: 100px;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     background: #607D8B;
-    transition: all 0.8s ease-in-out;
-
+    transition: all 0.8s ease;
     z-index: 100;
   }
+
+  .title__open {
+    position: absolute;
+    bottom: 60%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    background: black;
+    padding: 10px;
+    opacity: 0.7;
+  }
+
 
   .rating__line {
     height: 5px;

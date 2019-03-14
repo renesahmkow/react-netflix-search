@@ -9,6 +9,10 @@ const SearchArea = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+
+  .before {
+    transition: all 0.9s ease-in;
+  }
 `
 
 const StylesForm = styled.form`
@@ -23,6 +27,7 @@ const StylesForm = styled.form`
 `
 
 const StyledInput = styled.input`
+  position: relative;
   border: 2px solid black;
   padding: 5px;
   margin: 10px auto;

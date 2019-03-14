@@ -30,6 +30,8 @@ export default function App() {
     })
   }
 
+  console.log(movies)
+
   function titleSearch(event) {
     const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&query=${
       event.target.value
