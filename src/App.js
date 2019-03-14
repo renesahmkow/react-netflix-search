@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Card from './cards/Card'
 import Header from './header/Header'
 import Navbar from './navbar/Navbar'
+import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom'
 import Axios from 'axios'
 
 const Grid = styled.section`
@@ -50,21 +51,46 @@ export default function App() {
   }, [])
 
   return (
-    <Grid>
-      <Header titleSearch={titleSearch} />
-      <PageGrid>
-        {movies.map(movie => (
-          <Card
-            {...movie}
-            rating={movie.vote_average}
-            overview={movie.overview}
-            title={movie.title}
-            src={movie.poster_path}
-            key={movie.id}
-          />
-        ))}
-      </PageGrid>
-      <Navbar />
-    </Grid>
+    <Router>
+      <Route exact path="/">
+        <Grid>
+          <Header titleSearch={titleSearch} />
+          <PageGrid>
+            {movies.map(movie => (
+              <Card
+                {...movie}
+                rating={movie.vote_average}
+                overview={movie.overview}
+                title={movie.title}
+                src={movie.poster_path}
+                key={movie.id}
+              />
+            ))}
+          </PageGrid>
+          <Navbar />
+        </Grid>
+      </Route>
+
+      <Route path="/favorites">
+        <Grid>
+          <Header titleSearch={titleSearch} />
+          <PageGrid>
+            {movies
+              .map(movie => (
+                <Card
+                  {...movie}
+                  rating={movie.vote_average}
+                  overview={movie.overview}
+                  title={movie.title}
+                  src={movie.poster_path}
+                  key={movie.id}
+                />
+              ))
+              .filter(movie => movie.bookmarked)}
+          </PageGrid>
+          <Navbar />
+        </Grid>
+      </Route>
+    </Router>
   )
 }
