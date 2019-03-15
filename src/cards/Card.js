@@ -51,7 +51,13 @@ Card.defaultProps = {
   title: 'No title',
 }
 
-export default function Card({ title, src, overview, rating }) {
+export default function Card({
+  title,
+  src,
+  overview,
+  rating,
+  toggleFavoritesMovies,
+}) {
   const [openCard, setOpenCard] = useState(true)
 
   function handleClickCard() {
@@ -60,7 +66,7 @@ export default function Card({ title, src, overview, rating }) {
 
   function handleClickIcon(event) {
     event.stopPropagation()
-    console.log('clicked icon')
+    toggleFavoritesMovies()
   }
 
   return (

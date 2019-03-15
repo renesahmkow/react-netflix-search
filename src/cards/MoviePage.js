@@ -6,12 +6,24 @@ import Header from '../header/Header'
 
 const PageGrid = styled.div`
   display: grid;
-  grid-auto-rows: auto;
-  overflow: scroll;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+`
+
+const MovieContainer = styled.div`
+  display: grid;
+  align-content: flex-start;
+  grid-gap: 12px;
+  overflow-y: scroll;
 `
 
 export default function MoviePage() {
   const [movies, setMovies] = useState([])
+  movies.forEach(movie => (movie.favorites = false))
+
+  function toggleFavoritesMovies(movie) {
+    setMovies({ ...movie, favorites: !movie.favorites })
+  }
 
   function getTrendingMovies() {
     const urlString =
@@ -57,16 +69,19 @@ export default function MoviePage() {
   return (
     <PageGrid>
       <Header filterMovies={filterMovies} titleSearch={titleSearch} />
-      {movies.map(movie => (
-        <Card
-          {...movie}
-          rating={movie.vote_average}
-          overview={movie.overview}
-          title={movie.title}
-          src={movie.poster_path}
-          key={movie.id}
-        />
-      ))}
+      <MovieContainer>
+        {movies.map(movie => (
+          <Card
+            {...movie}
+            rating={movie.vote_average}
+            overview={movie.overview}
+            title={movie.title}
+            src={movie.poster_path}
+            key={movie.id}
+            toggleFavoritesMovies={toggleFavoritesMovies}
+          />
+        ))}
+      </MovieContainer>
     </PageGrid>
   )
 }

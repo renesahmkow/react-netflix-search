@@ -30,17 +30,20 @@ export default function Header({ titleSearch, filterMovies }) {
     setHeaderActive(!headerActive)
   }
 
+  function getFilterData(data) {
+    filterMovies({ ...data })
+  }
+
   function onInputChange(event) {
     setData({
       ...data,
       [event.target.name]: event.target.value,
     })
-    getFilterData(data)
   }
 
-  function getFilterData(data) {
-    filterMovies({ ...data })
-  }
+  useEffect(() => {
+    getFilterData(data)
+  }, [data])
 
   return (
     <section>
