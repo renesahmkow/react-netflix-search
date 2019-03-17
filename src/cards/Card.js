@@ -56,7 +56,8 @@ export default function Card({
   src,
   overview,
   rating,
-  toggleFavoritesMovies,
+  onBookmark,
+  movie,
 }) {
   const [openCard, setOpenCard] = useState(true)
 
@@ -64,9 +65,9 @@ export default function Card({
     setOpenCard(!openCard)
   }
 
-  function handleClickIcon(event) {
+  function setFavorites(event) {
     event.stopPropagation()
-    toggleFavoritesMovies()
+    onBookmark(movie)
   }
 
   return (
@@ -96,7 +97,7 @@ export default function Card({
         </CardRating>
 
         <CardIconsContainer>
-          <CardIcons onClick={handleClickIcon}>
+          <CardIcons onClick={setFavorites}>
             <FaRegHeart style={{ width: 25, height: 25 }} />
           </CardIcons>
           <CardIcons>
