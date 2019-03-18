@@ -50,22 +50,23 @@ export default function App() {
 
     Axios.get(urlString).then(res => {
       const { results } = res.data
-      const tempMovies = results.map(result => ({
-        ...result,
-        bookmark: false,
-      }))
-      setMovies(tempMovies)
+      setMovies(results)
     })
   }
+
   function toggleFavoritesMovies(movie) {
     const index = movies.indexOf(movie)
-    setMovies([
-      ...movies.slice(0, index),
-      { ...movie, bookmark: !movie.bookmark },
-      ...movies.slice(index + 1),
-    ])
 
-    setFavoritesMovies([...favoritesMovies, movies[index]])
+    if (favoritesMovies.length === 0) {
+      setFavoritesMovies([movies[index]])
+    } else if (
+      favoritesMovies.length > 0 &&
+      favoritesMovies.some(favMovie => favMovie.title === movies[index].title)
+    ) {
+      console.log(true)
+    } else {
+      setFavoritesMovies([...favoritesMovies, movies[index]])
+    }
   }
 
   function titleSearch(event) {
@@ -114,7 +115,6 @@ export default function App() {
           render={() => (
             <MoviePage
               movies={favoritesMovies}
-              // movies={movies.filter(movie => movie.bookmark)}
               titleSearch={titleSearch}
               filterMovies={filterMovies}
               onBookmark={toggleFavoritesMovies}

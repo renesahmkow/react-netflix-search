@@ -48,7 +48,7 @@ export default function Header({ titleSearch, filterMovies }) {
   return (
     <section>
       <StyledHeader>
-        <h1 data-cy="header-title">Neflixsearch</h1>
+        <h1 data-cy="header-title">Netflixsearch</h1>
         <div onClick={handleClick}>
           <FaSearch style={{ width: 25, height: 25 }} />
         </div>

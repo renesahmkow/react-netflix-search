@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import GlobalStyle from '../GlobalStyle'
-import { FaTv, FaRegHeart, FaRegTimesCircle } from 'react-icons/fa'
+import { FaTv } from 'react-icons/fa'
 
 const StyledCard = styled.div`
   color: white;
@@ -98,13 +98,7 @@ export default function Card({
 
         <CardIconsContainer>
           <CardIcons onClick={setFavorites}>
-            <FaRegHeart style={{ width: 25, height: 25 }} />
-          </CardIcons>
-          <CardIcons>
             <FaTv style={{ width: 25, height: 25 }} />
-          </CardIcons>
-          <CardIcons>
-            <FaRegTimesCircle style={{ width: 25, height: 25 }} />
           </CardIcons>
         </CardIconsContainer>
 
