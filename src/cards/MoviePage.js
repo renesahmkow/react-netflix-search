@@ -21,7 +21,6 @@ export default function MoviePage({
   titleSearch,
   filterMovies,
   movies,
-  icon,
 }) {
   return (
     <PageGrid>
@@ -36,7 +35,6 @@ export default function MoviePage({
             src={movie.poster_path}
             key={movie.id}
             movie={movies}
-            icon={icon}
             isBookmarked={movie.isBookmarked}
             addFavoritesMovies={() => addFavoritesMovies(movie)}
           />
