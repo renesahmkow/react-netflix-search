@@ -73,7 +73,7 @@ export default function App() {
   }
 
   function titleSearch(event) {
-    const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&query=${
+    const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&page=1&query=${
       event.target.value
     }`
     if (event.target.value === '') {
@@ -86,13 +86,16 @@ export default function App() {
     }
   }
 
-  async function filterMovies(data) {
-    const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&${
-      data.rating
-    }&${data.genre}`
-
+  async function filterMovies(data, count) {
+    //console.log(count)
+    const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&${
+      data.sort
+    }&include_adult=true&page=1&include_video=false&${data.rating}&${
+      data.genre
+    }&page=${count}&`
     await Axios.get(filterString).then(res => {
       const { results } = res.data
+
       setMovies(results)
     })
   }
@@ -113,7 +116,6 @@ export default function App() {
           )}
         />
         <Route
-          exact
           path="/favorites"
           render={() => (
             <MoviePage
@@ -124,6 +126,7 @@ export default function App() {
             />
           )}
         />
+        <Route path="/roulette" />
         <StyledNavbar>
           <StyledLink exact to="/">
             Home

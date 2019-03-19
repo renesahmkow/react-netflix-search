@@ -22,7 +22,7 @@ Header.propTypes = {
   titleSearch: PropTypes.func,
 }
 
-export default function Header({ titleSearch, filterMovies }) {
+export default function Header({ titleSearch, filterMovies, pageCount }) {
   const [headerActive, setHeaderActive] = useState(true)
   const [data, setData] = useState({})
 
@@ -30,8 +30,8 @@ export default function Header({ titleSearch, filterMovies }) {
     setHeaderActive(!headerActive)
   }
 
-  function getFilterData(data) {
-    filterMovies({ ...data })
+  function getFilterData(data, pageCount) {
+    filterMovies({ ...data }, pageCount)
   }
 
   function onInputChange(event) {
@@ -42,7 +42,7 @@ export default function Header({ titleSearch, filterMovies }) {
   }
 
   useEffect(() => {
-    getFilterData(data)
+    getFilterData(data, pageCount)
   }, [data])
 
   return (
@@ -54,6 +54,7 @@ export default function Header({ titleSearch, filterMovies }) {
         </div>
       </StyledHeader>
       <Form
+        pageCount={pageCount}
         headerActive={headerActive}
         titleSearch={titleSearch}
         onInputChange={onInputChange}

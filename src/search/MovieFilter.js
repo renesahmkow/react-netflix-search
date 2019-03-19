@@ -64,10 +64,12 @@ export default function MovieFilter({ onInputChange }) {
       </StyledSelect>
 
       <label htmlFor="sort">Sort by</label>
-      <StyledSelect value={genres.id} name="sort" id="sort">
-        <option value="9">Title</option>
-        <option value="8">Release Year</option>
-        <option value="7">Rating</option>
+      <StyledSelect onChange={onInputChange} name="sort" id="sort">
+        <option value="">-</option>
+        <option value="sort_by=original_title.desc">Title</option>
+        <option value="sort_by=release_date.desc">Newest</option>
+        <option value="sort_by=release_date.asc">Oldest</option>
+        <option value="sort_by=vote_average.desc">Rating (best)</option>
       </StyledSelect>
     </React.Fragment>
   )

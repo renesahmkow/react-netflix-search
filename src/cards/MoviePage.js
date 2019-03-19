@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from './Card'
 import styled from 'styled-components'
 import Header from '../header/Header'
@@ -22,9 +22,19 @@ export default function MoviePage({
   filterMovies,
   movies,
 }) {
+  const [pageCount, setPageCount] = useState(1)
+
+  function handlePageCounter() {
+    setPageCount(pageCount + 1)
+  }
+
   return (
     <PageGrid>
-      <Header filterMovies={filterMovies} titleSearch={titleSearch} />
+      <Header
+        pageCount={pageCount}
+        filterMovies={filterMovies}
+        titleSearch={titleSearch}
+      />
       <MovieContainer>
         {movies.map(movie => (
           <Card
@@ -39,6 +49,7 @@ export default function MoviePage({
             addFavoritesMovies={() => addFavoritesMovies(movie)}
           />
         ))}
+        <button onClick={handlePageCounter}>Weitere</button>
       </MovieContainer>
     </PageGrid>
   )

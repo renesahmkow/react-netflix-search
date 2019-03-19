@@ -65,7 +65,6 @@ export default function Card({
   function handleClickCard() {
     setOpenCard(!openCard)
   }
-
   function addFavorites(event) {
     event.stopPropagation()
     addFavoritesMovies(movie)
