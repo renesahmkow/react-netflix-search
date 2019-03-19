@@ -35,7 +35,6 @@ export default function App() {
   const [favoritesMovies, setFavoritesMovies] = useState(
     getFavoriteMoviesFromStorage()
   )
-  const [icon, setIcon] = useState(true)
 
   useEffect(() => {
     getTrendingMovies()
@@ -78,6 +77,7 @@ export default function App() {
       event.target.value
     }`
     if (event.target.value === '') {
+      getTrendingMovies()
     } else {
       Axios.get(searchString).then(res => {
         const { results } = res.data
@@ -109,7 +109,6 @@ export default function App() {
               titleSearch={titleSearch}
               filterMovies={filterMovies}
               addFavoritesMovies={addFavoritesMovies}
-              icon={icon}
             />
           )}
         />
@@ -122,7 +121,6 @@ export default function App() {
               titleSearch={titleSearch}
               filterMovies={filterMovies}
               addFavoritesMovies={addFavoritesMovies}
-              icon={icon}
             />
           )}
         />

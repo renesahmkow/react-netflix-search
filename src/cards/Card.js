@@ -100,9 +100,7 @@ export default function Card({
         <CardIconsContainer>
           <CardIcons onClick={addFavorites}>
             {isBookmarked ? (
-              <FaRegTimesCircle
-                style={{ width: 25, height: 25, color: 'green' }}
-              />
+              <FaRegTimesCircle style={{ width: 25, height: 25 }} />
             ) : (
               <FaTv style={{ width: 25, height: 25 }} />
             )}
