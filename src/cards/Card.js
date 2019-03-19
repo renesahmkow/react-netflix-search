@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import GlobalStyle from '../GlobalStyle'
-import { FaTv } from 'react-icons/fa'
+import { FaTv, FaRegTimesCircle } from 'react-icons/fa'
 
 const StyledCard = styled.div`
   color: white;
@@ -56,8 +56,9 @@ export default function Card({
   src,
   overview,
   rating,
-  onBookmark,
+  addFavoritesMovies,
   movie,
+  isBookmarked,
 }) {
   const [openCard, setOpenCard] = useState(true)
 
@@ -65,9 +66,9 @@ export default function Card({
     setOpenCard(!openCard)
   }
 
-  function setFavorites(event) {
+  function addFavorites(event) {
     event.stopPropagation()
-    onBookmark(movie)
+    addFavoritesMovies(movie)
   }
 
   return (
@@ -97,8 +98,14 @@ export default function Card({
         </CardRating>
 
         <CardIconsContainer>
-          <CardIcons onClick={setFavorites}>
-            <FaTv style={{ width: 25, height: 25 }} />
+          <CardIcons onClick={addFavorites}>
+            {isBookmarked ? (
+              <FaRegTimesCircle
+                style={{ width: 25, height: 25, color: 'green' }}
+              />
+            ) : (
+              <FaTv style={{ width: 25, height: 25 }} />
+            )}
           </CardIcons>
         </CardIconsContainer>
 

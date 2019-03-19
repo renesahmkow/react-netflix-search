@@ -35,6 +35,7 @@ export default function App() {
   const [favoritesMovies, setFavoritesMovies] = useState(
     getFavoriteMoviesFromStorage()
   )
+  const [icon, setIcon] = useState(true)
 
   useEffect(() => {
     getTrendingMovies()
@@ -54,18 +55,21 @@ export default function App() {
     })
   }
 
-  function toggleFavoritesMovies(movie) {
-    const index = movies.indexOf(movie)
+  function addFavoritesMovies(movie) {
+    if (favoritesMovies.some(favMovie => favMovie.id === movie.id)) {
+      const index = favoritesMovies.indexOf(movie)
 
-    if (favoritesMovies.length === 0) {
-      setFavoritesMovies([movies[index]])
-    } else if (
-      favoritesMovies.length > 0 &&
-      favoritesMovies.some(favMovie => favMovie.title === movies[index].title)
-    ) {
-      console.log(true)
+      setFavoritesMovies([
+        ...favoritesMovies.slice(0, index),
+        ...favoritesMovies.slice(index + 1),
+      ])
+      saveMoviesToStorage(favoritesMovies)
     } else {
-      setFavoritesMovies([...favoritesMovies, movies[index]])
+      const index = movies.indexOf(movie)
+      setFavoritesMovies([
+        ...favoritesMovies,
+        { ...movies[index], isBookmarked: true },
+      ])
     }
   }
 
@@ -73,7 +77,6 @@ export default function App() {
     const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&query=${
       event.target.value
     }`
-
     if (event.target.value === '') {
     } else {
       Axios.get(searchString).then(res => {
@@ -105,7 +108,8 @@ export default function App() {
               movies={movies}
               titleSearch={titleSearch}
               filterMovies={filterMovies}
-              onBookmark={toggleFavoritesMovies}
+              addFavoritesMovies={addFavoritesMovies}
+              icon={icon}
             />
           )}
         />
@@ -117,7 +121,8 @@ export default function App() {
               movies={favoritesMovies}
               titleSearch={titleSearch}
               filterMovies={filterMovies}
-              onBookmark={toggleFavoritesMovies}
+              addFavoritesMovies={addFavoritesMovies}
+              icon={icon}
             />
           )}
         />

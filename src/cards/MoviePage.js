@@ -17,10 +17,11 @@ const MovieContainer = styled.div`
 `
 
 export default function MoviePage({
-  onBookmark,
+  addFavoritesMovies,
   titleSearch,
   filterMovies,
   movies,
+  icon,
 }) {
   return (
     <PageGrid>
@@ -35,7 +36,9 @@ export default function MoviePage({
             src={movie.poster_path}
             key={movie.id}
             movie={movies}
-            onBookmark={() => onBookmark(movie)}
+            icon={icon}
+            isBookmarked={movie.isBookmarked}
+            addFavoritesMovies={() => addFavoritesMovies(movie)}
           />
         ))}
       </MovieContainer>
