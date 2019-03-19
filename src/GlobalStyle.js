@@ -114,5 +114,12 @@ export default createGlobalStyle`
     background-color: blue;
   }
 
+  .icon{
+  display: flex;
+  }
+
+  .hiddenIcon {
+    display: none;
+  }
 
 `

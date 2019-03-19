@@ -30,22 +30,25 @@ export default function Header({ titleSearch, filterMovies }) {
     setHeaderActive(!headerActive)
   }
 
+  function getFilterData(data) {
+    filterMovies({ ...data })
+  }
+
   function onInputChange(event) {
     setData({
       ...data,
       [event.target.name]: event.target.value,
     })
-    getFilterData(data)
   }
 
-  function getFilterData(data) {
-    filterMovies({ ...data })
-  }
+  useEffect(() => {
+    getFilterData(data)
+  }, [data])
 
   return (
     <section>
       <StyledHeader>
-        <h1 data-cy="header-title">Neflixsearch</h1>
+        <h1 data-cy="header-title">Netflixsearch</h1>
         <div onClick={handleClick}>
           <FaSearch style={{ width: 25, height: 25 }} />
         </div>

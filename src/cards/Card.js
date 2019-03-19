@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import GlobalStyle from '../GlobalStyle'
-import { FaTv, FaRegHeart, FaRegTimesCircle } from 'react-icons/fa'
+import { FaTv, FaRegTimesCircle } from 'react-icons/fa'
 
 const StyledCard = styled.div`
   color: white;
@@ -51,16 +51,24 @@ Card.defaultProps = {
   title: 'No title',
 }
 
-export default function Card({ title, src, overview, rating }) {
+export default function Card({
+  title,
+  src,
+  overview,
+  rating,
+  addFavoritesMovies,
+  movie,
+  isBookmarked,
+}) {
   const [openCard, setOpenCard] = useState(true)
 
   function handleClickCard() {
     setOpenCard(!openCard)
   }
 
-  function handleClickIcon(event) {
+  function addFavorites(event) {
     event.stopPropagation()
-    console.log('clicked icon')
+    addFavoritesMovies(movie)
   }
 
   return (
@@ -90,14 +98,14 @@ export default function Card({ title, src, overview, rating }) {
         </CardRating>
 
         <CardIconsContainer>
-          <CardIcons onClick={handleClickIcon}>
-            <FaRegHeart style={{ width: 25, height: 25 }} />
-          </CardIcons>
-          <CardIcons>
-            <FaTv style={{ width: 25, height: 25 }} />
-          </CardIcons>
-          <CardIcons>
-            <FaRegTimesCircle style={{ width: 25, height: 25 }} />
+          <CardIcons onClick={addFavorites}>
+            {isBookmarked ? (
+              <FaRegTimesCircle
+                style={{ width: 25, height: 25, color: 'green' }}
+              />
+            ) : (
+              <FaTv style={{ width: 25, height: 25 }} />
+            )}
           </CardIcons>
         </CardIconsContainer>
 
