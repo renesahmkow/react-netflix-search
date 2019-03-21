@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import MoviePage from './cards/MoviePage'
 import Axios from 'axios'
 import { saveMoviesToStorage, getFavoriteMoviesFromStorage } from './services'
+import RoulettePage from './roulette/RoulettePage'
 
 const Grid = styled.section`
   display: grid;
   grid-template-rows: auto 48px;
   grid-gap: 10px;
   height: 100vh;
+  background: #607d8b;
 `
 
 const StyledNavbar = styled.nav`
@@ -28,6 +30,10 @@ const StyledLink = styled(NavLink)`
   align-items: center;
   color: white;
   text-decoration: none;
+
+  &.active {
+    background: #607d8b;
+  }
 `
 
 export default function App() {
@@ -126,12 +132,23 @@ export default function App() {
             />
           )}
         />
-        <Route path="/roulette" />
+        <Route
+          path="/roulette"
+          render={() => (
+            <RoulettePage
+              movies={movies}
+              titleSearch={titleSearch}
+              filterMovies={filterMovies}
+              addFavoritesMovies={addFavoritesMovies}
+            />
+          )}
+        />
         <StyledNavbar>
           <StyledLink exact to="/">
             Home
           </StyledLink>
           <StyledLink to="/favorites">Favorites</StyledLink>
+          <StyledLink to="/roulette">Roulette</StyledLink>
         </StyledNavbar>
       </Grid>
     </Router>

@@ -35,6 +35,10 @@ const CardIcons = styled.div`
   height: 50px;
   border: 4px solid white;
   border-radius: 50%;
+
+  &.active {
+    background: lightgreen;
+  }
 `
 
 const CardDescribtion = styled.div`
@@ -93,7 +97,7 @@ export default function Card({
 
         <CardRating>
           <div className="rating__line" style={{ width: 10 * rating + '%' }} />
-          <div className="rating">{rating * 10}%</div>
+          <div className="rating">{rating}/10</div>
         </CardRating>
 
         <CardIconsContainer>

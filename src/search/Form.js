@@ -45,12 +45,7 @@ export default function Form({
       style={headerActive ? { height: 0, display: 'none' } : null}
     >
       <StylesForm data-cy="form">
-        <StyledInput
-          type="text"
-          onChange={titleSearch}
-          name="target"
-          value={value}
-        />
+        <StyledInput type="text" onChange={titleSearch} name="" value={value} />
         <MovieFilter onInputChange={onInputChange} />
       </StylesForm>
     </SearchArea>
