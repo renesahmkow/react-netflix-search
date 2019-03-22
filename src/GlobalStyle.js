@@ -1,6 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import styled from 'styled-components'
-import { animated } from 'react-spring'
 
 export default createGlobalStyle`
   * {
@@ -123,25 +121,28 @@ export default createGlobalStyle`
   .hiddenIcon {
     display: none;
   }
-`
-const Container = styled(animated.div)`
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(100px, 1fr));
-  grid-gap: 25px;
-  padding: 25px;
-  background: white;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.05);
-  will-change: width, height;
-`
-const Item = styled(animated.div)`
-  width: 100%;
-  height: 100%;
-  background: white;
-  border-radius: 5px;
-  will-change: transform, opacity;
-`
 
-export { Container, Item }
+  .c {
+  position: absolute;
+  height: 400px;
+  width: 250px;
+  will-change: transform, opacity; 
+  overflow: hidden; 
+  border-radius: 6px;  
+}
+
+  .front,
+  .back {
+  background-size: cover;
+  }   
+
+  .back {
+
+  }
+
+  .front {
+  background: gray;
+  overflow: scroll;
+  } 
+
+`

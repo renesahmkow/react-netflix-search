@@ -6,8 +6,9 @@ import RouletteCard from './RouletteCard'
 
 const Grid = styled.section`
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  background: white;
+  grid-template-rows: auto 1fr;
+  background: #607d8b;
+  height: auto;
 `
 const FitlerContainer = styled.form`
   display: flex;
@@ -77,18 +78,20 @@ export default function RoulettePage() {
     const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=true&page=1&include_video=false&${
       data.rating
     }&${data.genre}`
-
-    for (let i = 0; i < 6; i++) {
+    const newArray = []
+    for (let i = 0; i < 5; i++) {
       await Axios.get(filterString).then(res => {
         const { results } = res.data
         const index = Math.floor(Math.random() * results.length)
 
-        setFilteredMovies([
-          ...filteredMovies,
-          filteredMovies.push(results[index]),
-        ])
+        if (newArray.some(movie => movie.id === results[index].id)) {
+          newArray.slice(0, index)
+        } else {
+          newArray.push(results[index])
+        }
       })
     }
+    setFilteredMovies(newArray)
   }
 
   useEffect(() => {
