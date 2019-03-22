@@ -9,6 +9,6 @@ const StyledDiv = styled.div`
   border-radius: 6px;
 `
 
-export default function RouletteCard() {
-  return <StyledDiv />
+export default function RouletteCard({ title }) {
+  return <StyledDiv>{title}</StyledDiv>
 }

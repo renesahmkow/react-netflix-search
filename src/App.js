@@ -63,7 +63,6 @@ export default function App() {
   function addFavoritesMovies(movie) {
     if (favoritesMovies.some(favMovie => favMovie.id === movie.id)) {
       const index = favoritesMovies.indexOf(movie)
-
       setFavoritesMovies([
         ...favoritesMovies.slice(0, index),
         ...favoritesMovies.slice(index + 1),
@@ -82,6 +81,7 @@ export default function App() {
     const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&page=1&query=${
       event.target.value
     }`
+
     if (event.target.value === '') {
       getTrendingMovies()
     } else {
@@ -93,7 +93,6 @@ export default function App() {
   }
 
   async function filterMovies(data, count) {
-    //console.log(count)
     const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&${
       data.sort
     }&include_adult=true&page=1&include_video=false&${data.rating}&${
