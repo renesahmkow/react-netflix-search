@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   padding: 10px 25px;
   align-items: center;
-  background: black;
+  background: #1c3144;
   height: 50px;
   width: 100%;
   color: white;
@@ -50,7 +50,7 @@ export default function Header({ titleSearch, filterMovies, pageCount }) {
       <StyledHeader>
         <h1 data-cy="header-title">Netflixsearch</h1>
         <div onClick={handleClick}>
-          <FaSearch style={{ width: 25, height: 25 }} />
+          <FaSearch style={{ width: 25, height: 25, color: '#CEB992 ' }} />
         </div>
       </StyledHeader>
       <Form

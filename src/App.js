@@ -11,7 +11,7 @@ const Grid = styled.section`
   grid-template-rows: auto 48px;
   grid-gap: 10px;
   height: 100vh;
-  background: #607d8b;
+  background: #596f62;
 `
 
 const StyledNavbar = styled.nav`
@@ -20,7 +20,7 @@ const StyledNavbar = styled.nav`
   grid-gap: 2px;
   height: 50px;
   width: 100%;
-  background: black;
+  background: #1c3144;
   color: white;
 `
 
@@ -32,7 +32,7 @@ const StyledLink = styled(NavLink)`
   text-decoration: none;
 
   &.active {
-    background: #607d8b;
+    background: #ceb992;
   }
 `
 

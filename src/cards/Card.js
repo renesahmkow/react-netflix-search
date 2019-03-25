@@ -33,12 +33,10 @@ const CardIcons = styled.div`
   justify-content: center;
   width: 50px;
   height: 50px;
-  border: 4px solid white;
   border-radius: 50%;
+  border: 4px solid white;
 
-  &.active {
-    background: lightgreen;
-  }
+
 `
 
 const CardDescribtion = styled.div`
@@ -65,13 +63,18 @@ export default function Card({
   isBookmarked,
 }) {
   const [openCard, setOpenCard] = useState(true)
+  const [toggleIcon, setToggleIcon] = useState(false)
 
+  console.log(toggleIcon)
+  
   function handleClickCard() {
     setOpenCard(!openCard)
   }
+
   function addFavorites(event) {
     event.stopPropagation()
     addFavoritesMovies(movie)
+    setToggleIcon(!toggleIcon)
   }
 
   return (
@@ -100,10 +103,10 @@ export default function Card({
           <div className="rating">{rating}/10</div>
         </CardRating>
 
-        <CardIconsContainer>
-          <CardIcons onClick={addFavorites}>
+        <CardIconsContainer >
+          <CardIcons onClick={addFavorites} className={ toggleIcon ? 'react-icons' : null} >            
             {isBookmarked ? (
-              <FaRegTimesCircle style={{ width: 25, height: 25 }} />
+              <FaRegTimesCircle style={{ width: 25, height: 25}} />
             ) : (
               <FaTv style={{ width: 25, height: 25 }} />
             )}

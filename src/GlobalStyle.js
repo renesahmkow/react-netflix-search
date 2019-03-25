@@ -72,7 +72,7 @@ export default createGlobalStyle`
     overflow: scroll;
     height: 100vh;
     width: 100%;
-    background: #607D8B;
+    background: #596F62;
     transition: all 0.8s ease;
     z-index: 100;
   }
@@ -111,7 +111,8 @@ export default createGlobalStyle`
   }
 
   .react-icons {
-    background-color: blue;
+    border: 4px solid lightgreen !important;
+    
   }
 
   .icon{
@@ -124,11 +125,12 @@ export default createGlobalStyle`
 
   .c {
   position: absolute;
-  height: 400px;
+  height: 450px;
   width: 250px;
   will-change: transform, opacity; 
   overflow: hidden; 
   border-radius: 6px;  
+  border : 2px solid #9CB9AF;
 }
 
   .front,
@@ -141,8 +143,15 @@ export default createGlobalStyle`
   }
 
   .front {
-  background: gray;
+  background: #596f62;
   overflow: scroll;
   } 
+
+  .filterActive {
+    left: 50px !important;
+    transition: all 1s ease;
+  }
+
+
 
 `
