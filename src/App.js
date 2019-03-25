@@ -4,12 +4,14 @@ import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import MoviePage from './cards/MoviePage'
 import Axios from 'axios'
 import { saveMoviesToStorage, getFavoriteMoviesFromStorage } from './services'
+import RoulettePage from './roulette/RoulettePage'
 
 const Grid = styled.section`
   display: grid;
   grid-template-rows: auto 48px;
   grid-gap: 10px;
   height: 100vh;
+  background: #596f62;
 `
 
 const StyledNavbar = styled.nav`
@@ -18,7 +20,7 @@ const StyledNavbar = styled.nav`
   grid-gap: 2px;
   height: 50px;
   width: 100%;
-  background: black;
+  background: #1c3144;
   color: white;
 `
 
@@ -28,6 +30,10 @@ const StyledLink = styled(NavLink)`
   align-items: center;
   color: white;
   text-decoration: none;
+
+  &.active {
+    background: #ceb992;
+  }
 `
 
 export default function App() {
@@ -57,7 +63,6 @@ export default function App() {
   function addFavoritesMovies(movie) {
     if (favoritesMovies.some(favMovie => favMovie.id === movie.id)) {
       const index = favoritesMovies.indexOf(movie)
-
       setFavoritesMovies([
         ...favoritesMovies.slice(0, index),
         ...favoritesMovies.slice(index + 1),
@@ -73,9 +78,10 @@ export default function App() {
   }
 
   function titleSearch(event) {
-    const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&query=${
+    const searchString = `https://api.themoviedb.org/3/search/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=false&page=1&query=${
       event.target.value
     }`
+
     if (event.target.value === '') {
       getTrendingMovies()
     } else {
@@ -86,13 +92,15 @@ export default function App() {
     }
   }
 
-  async function filterMovies(data) {
-    const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&${
-      data.rating
-    }&${data.genre}`
-
+  async function filterMovies(data, count) {
+    const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&${
+      data.sort
+    }&include_adult=true&page=1&include_video=false&${data.rating}&${
+      data.genre
+    }&page=${count}&`
     await Axios.get(filterString).then(res => {
       const { results } = res.data
+
       setMovies(results)
     })
   }
@@ -113,11 +121,21 @@ export default function App() {
           )}
         />
         <Route
-          exact
           path="/favorites"
           render={() => (
             <MoviePage
               movies={favoritesMovies}
+              titleSearch={titleSearch}
+              filterMovies={filterMovies}
+              addFavoritesMovies={addFavoritesMovies}
+            />
+          )}
+        />
+        <Route
+          path="/roulette"
+          render={() => (
+            <RoulettePage
+              movies={movies}
               titleSearch={titleSearch}
               filterMovies={filterMovies}
               addFavoritesMovies={addFavoritesMovies}
@@ -129,6 +147,7 @@ export default function App() {
             Home
           </StyledLink>
           <StyledLink to="/favorites">Favorites</StyledLink>
+          <StyledLink to="/roulette">Roulette</StyledLink>
         </StyledNavbar>
       </Grid>
     </Router>

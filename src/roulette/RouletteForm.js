@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import Axios from 'axios'
 import styled from 'styled-components'
+import Axios from 'axios'
 
 const StyledSelect = styled.select`
-  display: block;
+  display: flex;
   background: white;
   width: 90%;
   height: 30px;
@@ -11,7 +11,7 @@ const StyledSelect = styled.select`
   margin: 0 auto 10px auto;
 `
 
-export default function MovieFilter({ onInputChange }) {
+export default function RouletteForm({ onInputChange }) {
   const [genres, setGenres] = useState([])
 
   async function getMovieGenres() {
@@ -61,15 +61,6 @@ export default function MovieFilter({ onInputChange }) {
           <option value="vote_average.gte=2">2 +</option>
           <option value="vote_average.gte=1">1 +</option>
         </optgroup>
-      </StyledSelect>
-
-      <label htmlFor="sort">Sort by</label>
-      <StyledSelect onChange={onInputChange} name="sort" id="sort">
-        <option value="">-</option>
-        <option value="sort_by=original_title.desc">Title</option>
-        <option value="sort_by=release_date.desc">Newest</option>
-        <option value="sort_by=release_date.asc">Oldest</option>
-        <option value="sort_by=vote_average.desc">Rating (best)</option>
       </StyledSelect>
     </React.Fragment>
   )

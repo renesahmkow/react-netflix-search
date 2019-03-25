@@ -9,7 +9,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   padding: 10px 25px;
   align-items: center;
-  background: black;
+  background: #1c3144;
   height: 50px;
   width: 100%;
   color: white;
@@ -22,7 +22,7 @@ Header.propTypes = {
   titleSearch: PropTypes.func,
 }
 
-export default function Header({ titleSearch, filterMovies }) {
+export default function Header({ titleSearch, filterMovies, pageCount }) {
   const [headerActive, setHeaderActive] = useState(true)
   const [data, setData] = useState({})
 
@@ -30,8 +30,8 @@ export default function Header({ titleSearch, filterMovies }) {
     setHeaderActive(!headerActive)
   }
 
-  function getFilterData(data) {
-    filterMovies({ ...data })
+  function getFilterData(data, pageCount) {
+    filterMovies({ ...data }, pageCount)
   }
 
   function onInputChange(event) {
@@ -42,7 +42,7 @@ export default function Header({ titleSearch, filterMovies }) {
   }
 
   useEffect(() => {
-    getFilterData(data)
+    getFilterData(data, pageCount)
   }, [data])
 
   return (
@@ -50,10 +50,11 @@ export default function Header({ titleSearch, filterMovies }) {
       <StyledHeader>
         <h1 data-cy="header-title">Netflixsearch</h1>
         <div onClick={handleClick}>
-          <FaSearch style={{ width: 25, height: 25 }} />
+          <FaSearch style={{ width: 25, height: 25, color: '#CEB992 ' }} />
         </div>
       </StyledHeader>
       <Form
+        pageCount={pageCount}
         headerActive={headerActive}
         titleSearch={titleSearch}
         onInputChange={onInputChange}
