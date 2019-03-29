@@ -4,6 +4,7 @@ import Axios from 'axios'
 import GlobalStyle from '../GlobalStyle'
 import RouletteCard from './RouletteCard'
 import { FaSlidersH } from 'react-icons/fa'
+import * as _ from 'lodash'
 
 const Grid = styled.section`
   display: grid;
@@ -26,13 +27,17 @@ const StyledButtons = styled.div`
 const GoButton = styled.button`
   display: flex;
   justify-content: center;
-  outline: none;
-  background: red;
   width: 80px;
   height: 80px;
-  border-radius: 50%;
-  box-shadow: 0 0 2px;
+  border: solid 1px #123596;
+  border-radius: 999px;
+  background: #9cb9af;
+  opacity: 1;
   margin: 0 auto;
+
+  &:active {
+    border: solid 1px #ffb400;
+  }
 `
 
 const FitlerContainer = styled.form`
@@ -104,20 +109,12 @@ export default function RoulettePage() {
     const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=true&page=1&include_video=false&${
       data.rating
     }&${data.genre}`
-    const newArray = []
-    for (let i = 0; i < 5; i++) {
-      await Axios.get(filterString).then(res => {
-        const { results } = res.data
-        const index = Math.floor(Math.random() * results.length)
 
-        if (newArray.some(movie => movie.id === results[index].id)) {
-          newArray.slice(0, index)
-        } else {
-          newArray.push(results[index])
-        }
-      })
-    }
-    setFilteredMovies(newArray)
+    await Axios.get(filterString).then(res => {
+      const { results } = res.data
+      setFilteredMovies(_.sampleSize([...results], 5))
+    })
+
     setFilterActive(true)
   }
 

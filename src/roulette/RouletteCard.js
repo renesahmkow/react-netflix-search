@@ -6,7 +6,7 @@ import Card from '../cards/Card'
 
 const StyledDiv = styled.div`
   flex: 1 0 250px;
-  background: gray;
+  background: #596f62;
   margin: 1rem;
   overflow: hidden;
   border-radius: 6px;

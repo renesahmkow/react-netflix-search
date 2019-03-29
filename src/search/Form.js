@@ -3,16 +3,9 @@ import styled from 'styled-components'
 import MovieFilter from './MovieFilter'
 
 const SearchArea = styled.div`
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
-  position: relative;
-
-  .before {
-    transition: all 0.9s ease-in;
-  }
 `
 
 const StylesForm = styled.form`
@@ -22,22 +15,23 @@ const StylesForm = styled.form`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  overflow: hidden;
   padding: 10px;
+  outline: none;
 `
 
 const StyledInput = styled.input`
   position: relative;
-  border: 2px solid black;
+  border: 2px solid #9cb9af;
   padding: 5px;
   margin: 10px auto;
+  outline: none;
 `
 
 export default function Form({ titleSearch, headerActive, onInputChange }) {
   return (
     <SearchArea
       data-cy="area"
-      style={headerActive ? { height: 0, display: 'none' } : null}
+      className={headerActive ? 'header__close' : 'header__active'}
     >
       <StylesForm data-cy="form">
         <StyledInput type="text" onChange={titleSearch} />

@@ -20,11 +20,13 @@ export default createGlobalStyle`
   h1, h2, h3, h4, h5, h6,
   ul, ol {
     margin: 0;
+    color: #CEB992;
   }
 
   label {
     margin-left: 20px;
     font-weight: bold;
+    color: #CEB992;
   }
 
   input, textarea, button {
@@ -33,6 +35,18 @@ export default createGlobalStyle`
 
   header {
     overflow: hidden;
+  }
+
+  .header__active {
+    display: flex;
+    height: 100%;
+    position: relative;
+    transition: height 1s ease;
+  }
+
+  .header__close {
+    height: 0;
+    display: none !important;
   }
 
 

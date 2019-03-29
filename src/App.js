@@ -56,7 +56,13 @@ export default function App() {
 
     Axios.get(urlString).then(res => {
       const { results } = res.data
-      setMovies(results)
+
+      const films = results.map(movie => ({
+        ...movie,
+        isInFavorites: favoritesMovies.some(fv => fv.id === movie.id),
+      }))
+
+      setMovies(films)
     })
   }
 
@@ -64,17 +70,30 @@ export default function App() {
     if (favoritesMovies.some(favMovie => favMovie.id === movie.id)) {
       const index = favoritesMovies.indexOf(movie)
       setFavoritesMovies([
-        ...favoritesMovies.slice(0, index),
-        ...favoritesMovies.slice(index + 1),
+        ...favoritesMovies.splice(0, index),
+        ...favoritesMovies.splice(index + 1),
       ])
       saveMoviesToStorage(favoritesMovies)
     } else {
       const index = movies.indexOf(movie)
       setFavoritesMovies([
         ...favoritesMovies,
-        { ...movies[index], isBookmarked: true },
+        {
+          ...movies[index],
+          isBookmarked: true,
+        },
       ])
+      saveMoviesToStorage(favoritesMovies)
     }
+  }
+
+  function checkMoviesIncludet() {
+    setMovies(
+      movies.map(movie => ({
+        ...movie,
+        isInFavorites: favoritesMovies.some(fv => fv.id === movie.id),
+      }))
+    )
   }
 
   function titleSearch(event) {
@@ -116,6 +135,7 @@ export default function App() {
               movies={movies}
               titleSearch={titleSearch}
               filterMovies={filterMovies}
+              favoritesMovies={favoritesMovies}
               addFavoritesMovies={addFavoritesMovies}
             />
           )}
