@@ -21,12 +21,9 @@ export default function MoviePage({
   titleSearch,
   filterMovies,
   movies,
+  favoritesMovies,
 }) {
-  const [pageCount, setPageCount] = useState(1)
-
-  function handlePageCounter() {
-    setPageCount(pageCount + 1)
-  }
+  const [pageCount] = useState(1)
 
   return (
     <PageGrid>
@@ -45,11 +42,12 @@ export default function MoviePage({
             src={movie.poster_path}
             key={movie.id}
             movie={movies}
+            inFavorites={movie.isInFavorites}
+            favoritesMovies={favoritesMovies}
             isBookmarked={movie.isBookmarked}
             addFavoritesMovies={() => addFavoritesMovies(movie)}
           />
         ))}
-        <button onClick={handlePageCounter}>Weitere</button>
       </MovieContainer>
     </PageGrid>
   )
