@@ -16,6 +16,8 @@ const Grid = styled.section`
 
 const StyledNavbar = styled.nav`
   display: grid;
+  position: fixed;
+  bottom: 0;
   grid-auto-flow: column;
   grid-gap: 2px;
   height: 50px;
@@ -85,15 +87,6 @@ export default function App() {
       ])
       saveMoviesToStorage(favoritesMovies)
     }
-  }
-
-  function checkMoviesIncludet() {
-    setMovies(
-      movies.map(movie => ({
-        ...movie,
-        isInFavorites: favoritesMovies.some(fv => fv.id === movie.id),
-      }))
-    )
   }
 
   function titleSearch(event) {

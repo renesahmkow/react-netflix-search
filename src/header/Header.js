@@ -11,9 +11,11 @@ const StyledHeader = styled.header`
   align-items: center;
   background: #1c3144;
   height: 50px;
-  width: 100%;
   color: white;
   margin-bottom: 5px;
+
+  @media (min-width: 900px) {
+  }
 `
 
 Header.propTypes = {
