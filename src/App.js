@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import styled from 'styled-components'
 import MoviePage from './cards/MoviePage'
+import RoulettePage from './roulette/RoulettePage'
 import Axios from 'axios'
 import { saveMoviesToStorage, getFavoriteMoviesFromStorage } from './services'
-import RoulettePage from './roulette/RoulettePage'
+import { GiAbstract103 } from 'react-icons/gi'
+import { FaHome, FaTv } from 'react-icons/fa'
 
 const Grid = styled.section`
   display: grid;
@@ -22,7 +24,7 @@ const StyledNavbar = styled.nav`
   grid-gap: 2px;
   height: 50px;
   width: 100%;
-  background: #1c3144;
+  background: #596f62;
   color: white;
 `
 
@@ -32,6 +34,7 @@ const StyledLink = styled(NavLink)`
   align-items: center;
   color: white;
   text-decoration: none;
+  background: #1c3144;
 
   &.active {
     background: #ceb992;
@@ -157,10 +160,14 @@ export default function App() {
         />
         <StyledNavbar>
           <StyledLink exact to="/">
-            Home
+            <FaHome style={{ width: 25, height: 25 }} />
           </StyledLink>
-          <StyledLink to="/favorites">Favorites</StyledLink>
-          <StyledLink to="/roulette">Roulette</StyledLink>
+          <StyledLink to="/favorites">
+            <FaTv style={{ width: 25, height: 25 }} />
+          </StyledLink>
+          <StyledLink to="/roulette">
+            <GiAbstract103 style={{ width: 25, height: 25 }} />
+          </StyledLink>
         </StyledNavbar>
       </Grid>
     </Router>

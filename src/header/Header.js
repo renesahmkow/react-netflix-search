@@ -50,7 +50,7 @@ export default function Header({ titleSearch, filterMovies, pageCount }) {
   return (
     <section>
       <StyledHeader>
-        <h1 data-cy="header-title">MovFix</h1>
+        <h1 data-cy="header-title">AppFlix</h1>
         <div onClick={handleClick}>
           <FaSearch style={{ width: 25, height: 25, color: '#CEB992 ' }} />
         </div>
