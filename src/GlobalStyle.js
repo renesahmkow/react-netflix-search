@@ -40,6 +40,7 @@ export default createGlobalStyle`
   .header__active {
     display: flex;
     height: 100%;
+    width: 500px;
     position: relative;
     transition: height 1s ease;
   }
@@ -47,6 +48,13 @@ export default createGlobalStyle`
   .header__close {
     height: 0;
     display: none !important;
+
+    @media (min-width: 900px) {
+      display: flex !important;
+      height: 100%;
+      width: 500px;
+      overflow: scroll;
+    }
   }
 
 
@@ -60,6 +68,10 @@ export default createGlobalStyle`
     transition: all 0.8s ease;
   }
 
+  .closed__card {
+    display: none;
+  }
+
   .cover {
     position: relative;
     background-size: cover;
@@ -67,6 +79,10 @@ export default createGlobalStyle`
     padding: 15px;
     color: #fff;
     transition: all 0.8s ease;
+
+    @media (min-width: 500px) {
+      width: auto;
+    }
   }
 
   .cover__open {
@@ -89,6 +105,7 @@ export default createGlobalStyle`
     background: #596F62;
     transition: all 0.8s ease;
     z-index: 100;
+
   }
 
   .title__open {
