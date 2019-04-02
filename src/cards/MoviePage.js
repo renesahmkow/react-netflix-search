@@ -8,6 +8,7 @@ const PageGrid = styled.div`
   grid-template-rows: auto 1fr;
   height: auto;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 `
 
 const MovieContainer = styled.div`
