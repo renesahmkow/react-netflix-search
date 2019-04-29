@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import MoviePage from './cards/MoviePage'
@@ -48,20 +48,19 @@ export default function App() {
   )
 
   useEffect(() => {
-    getTrendingMovies()
+    saveMoviesToStorage(favoritesMovies)
   }, [])
 
   useEffect(() => {
-    saveMoviesToStorage(favoritesMovies)
-  }, [favoritesMovies])
+    getTrendingMovies()
+  }, [])
 
-  function getTrendingMovies() {
+  async function getTrendingMovies() {
     const urlString =
       'https://api.themoviedb.org/3/trending/movie/week?api_key=6dd2696164ca6e927402920dedc2e294'
 
-    Axios.get(urlString).then(res => {
+    await Axios.get(urlString).then(res => {
       const { results } = res.data
-
       const films = results.map(movie => ({
         ...movie,
         isInFavorites: favoritesMovies.some(fv => fv.id === movie.id),

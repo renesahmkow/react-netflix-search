@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import Axios from 'axios'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import GlobalStyle from '../GlobalStyle'
@@ -41,6 +42,11 @@ const CardDescribtion = styled.div`
   padding: 15px;
   line-height: 1.5;
 `
+const Genre = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+`
 
 Card.propTypes = {
   title: PropTypes.string,
@@ -58,17 +64,31 @@ export default function Card({
   rating,
   addFavoritesMovies,
   movie,
+  genre,
   isBookmarked,
   inFavorites,
 }) {
   const [openCard, setOpenCard] = useState(true)
   const [toggleIcon, setToggleIcon] = useState(false)
+  const [genreNames, setGenreNames] = useState([])
+
+  async function getMovieGenres() {
+    const genreString =
+      'https://api.themoviedb.org/3/genre/movie/list?api_key=6dd2696164ca6e927402920dedc2e294&language=de'
+
+    await Axios.get(genreString).then(res => {
+      const { genres } = res.data
+      setGenreNames(genres.find(movie => movie.id === genre[0]))
+    })
+  }
+
+  useEffect(() => {
+    getMovieGenres()
+  }, [])
 
   function handleClickCard() {
     setOpenCard(!openCard)
   }
-
-  console.log(inFavorites)
 
   function addFavorites(event) {
     event.stopPropagation()
@@ -98,11 +118,19 @@ export default function Card({
         </CardCover>
 
         <CardRating>
-          <div className="rating__line" style={{ width: 10 * rating + '%' }} />
-          <div className="rating">{rating}/10</div>
+          <div
+            className={openCard ? 'none' : 'rating__line'}
+            style={{ width: 10 * rating + '%' }}
+          />
+          <div className={openCard ? 'none' : 'rating'}>{rating}/10</div>
         </CardRating>
 
-        <CardIconsContainer>
+        <Genre className={openCard ? 'none' : null}>
+          <div style={{ marginRight: '10px' }}>Genre:</div>
+          <div>{genreNames.name}</div>
+        </Genre>
+
+        <CardIconsContainer className={openCard ? 'none' : null}>
           <CardIcons
             onClick={addFavorites}
             className={inFavorites ? 'react-icons' : null}
@@ -115,7 +143,9 @@ export default function Card({
           </CardIcons>
         </CardIconsContainer>
 
-        <CardDescribtion>{overview}</CardDescribtion>
+        <CardDescribtion className={openCard ? 'none' : null}>
+          {overview}
+        </CardDescribtion>
       </CardContent>
 
       <GlobalStyle />

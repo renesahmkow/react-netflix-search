@@ -65,6 +65,7 @@ export default function MoviePage({
         {movies.map(movie => (
           <Card
             {...movie}
+            genre={movie.genre_ids}
             rating={movie.vote_average}
             overview={movie.overview}
             title={movie.title}

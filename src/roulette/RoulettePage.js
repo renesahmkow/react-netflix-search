@@ -75,6 +75,7 @@ const StyledSelectGenre = styled.select`
 const CardContainer = styled.div`
   display: flex;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin: 10px;
   position: relative;
 `
@@ -105,12 +106,12 @@ export default function RoulettePage() {
     })
   }
 
-  async function getFilteredMovies(data) {
+  function getFilteredMovies(data) {
     const filterString = `https://api.themoviedb.org/3/discover/movie?api_key=6dd2696164ca6e927402920dedc2e294&language=de&include_adult=true&page=1&include_video=false&${
       data.rating
     }&${data.genre}`
 
-    await Axios.get(filterString).then(res => {
+    Axios.get(filterString).then(res => {
       const { results } = res.data
       setFilteredMovies(_.sampleSize([...results], 5))
     })

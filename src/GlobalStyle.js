@@ -38,17 +38,15 @@ export default createGlobalStyle`
   }
 
   .header__active {
-    display: flex;
-    height: 100%;
-    position: relative;
-    transition: height 1s ease;
+    opacity: 1;
+    height: 100%; 
   }
 
   .header__close {
+    opacity: 0;
+    z-index: -1;
     height: 0;
-    display: none !important;
   }
-
 
   .close {
     position: relative;
@@ -72,6 +70,10 @@ export default createGlobalStyle`
   .cover__open {
     background-size: cover;
     height: 300px;
+  }
+
+  .none {
+    display: none !important;
   }
 
   .open {
@@ -112,6 +114,7 @@ export default createGlobalStyle`
     background: black;
     padding: 10px;
     opacity: 0.7;
+
   }
 
   .rating__line {
