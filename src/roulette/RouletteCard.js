@@ -13,7 +13,7 @@ const StyledDiv = styled.div`
   background-size: cover;
 `
 
-export default function RouletteCard({ title, overview, rating, src }) {
+export default function RouletteCard({ title, overview, rating, src, genre }) {
   const [flipped, set] = useState(false)
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
@@ -38,7 +38,13 @@ export default function RouletteCard({ title, overview, rating, src }) {
           transform: transform.interpolate(t => `${t} rotateX(180deg)`),
         }}
       >
-        <Card title={title} overview={overview} rating={rating} src={src} />
+        <Card
+          genre={genre}
+          title={title}
+          overview={overview}
+          rating={rating}
+          src={src}
+        />
       </a.div>
       <GlobalStyle />
     </StyledDiv>

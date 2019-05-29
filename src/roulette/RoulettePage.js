@@ -129,6 +129,7 @@ export default function RoulettePage() {
         {filteredMovies.map(movie => (
           <RouletteCard
             {...movie}
+            genre={movie.genre_ids}
             rating={movie.vote_average}
             overview={movie.overview}
             title={movie.title}

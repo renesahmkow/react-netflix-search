@@ -72,6 +72,10 @@ export default function Card({
   const [toggleIcon, setToggleIcon] = useState(false)
   const [genreNames, setGenreNames] = useState([])
 
+  useEffect(() => {
+    getMovieGenres()
+  }, [])
+
   async function getMovieGenres() {
     const genreString =
       'https://api.themoviedb.org/3/genre/movie/list?api_key=6dd2696164ca6e927402920dedc2e294&language=de'
@@ -81,10 +85,6 @@ export default function Card({
       setGenreNames(genres.find(movie => movie.id === genre[0]))
     })
   }
-
-  useEffect(() => {
-    getMovieGenres()
-  }, [])
 
   function handleClickCard() {
     setOpenCard(!openCard)
